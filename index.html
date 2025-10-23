@@ -203,14 +203,10 @@ function sendEmail() {
                 timestamp: new Date().toISOString()
             })
         })
-        .then(response => response.json())
-        .then(data => {
-            alert('📧 Download link sent to ' + email + '\n\nCheck your email on your computer to start connecting globally!');
-            // Also redirect to download
-            setTimeout(() => {
-                window.location.href = 'LoveWithoutBorders.zip';
-            }, 2000);
-        })
+       .then(data => {
+    alert('✅ Thanks! We\'ll notify you about updates.\n\nYour download is starting now - transfer to computer for best experience!');
+    window.location.href = 'LoveWithoutBorders.zip';
+})
         .catch(error => {
             alert('📧 Download link sent to ' + email + ' (email saved for updates!)');
             window.location.href = 'LoveWithoutBorders.zip';
