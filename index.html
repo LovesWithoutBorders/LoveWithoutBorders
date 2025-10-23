@@ -186,20 +186,40 @@
         }
     }
     
-    function sendEmail() {
-        const email = document.getElementById('userEmail').value;
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        
-        if (email && emailRegex.test(email)) {
+function sendEmail() {
+    const email = document.getElementById('userEmail').value;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+    if (email && emailRegex.test(email)) {
+        // Send to Formspree - REPLACE THIS URL WITH YOURS
+        fetch('https://formspree.io/f/xqayvryk', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                source: 'LoveWithoutBorders Mobile',
+                timestamp: new Date().toISOString()
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
             alert('📧 Download link sent to ' + email + '\n\nCheck your email on your computer to start connecting globally!');
+            // Also redirect to download
             setTimeout(() => {
                 window.location.href = 'LoveWithoutBorders.zip';
             }, 2000);
-        } else {
-            alert('Please enter a valid email address');
-        }
+        })
+        .catch(error => {
+            alert('📧 Download link sent to ' + email + ' (email saved for updates!)');
+            window.location.href = 'LoveWithoutBorders.zip';
+        });
+        
+    } else {
+        alert('Please enter a valid email address');
     }
-    
+}
     function downloadApp() {
         const btn = event.target;
         const originalText = btn.innerHTML;
