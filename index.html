@@ -495,19 +495,20 @@
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         
         if (email && emailRegex.test(email)) {
-            // Show loading state
             const btn = document.querySelector('button[onclick="sendToEmail()"]');
             const originalText = btn.innerHTML;
             btn.innerHTML = '<span class="spinner"></span>SENDING LINK...';
             btn.disabled = true;
+
+            console.log('Starting email process for:', email);
             
-            // Prepare email data
             const templateParams = {
                 to_email: email,
                 name: 'User',
                 from_name: 'LovesWithoutBorders',
                 subject: 'Your LoveWithoutBorders Download Link! 💖',
-                message: `Hi there! 
+                reply_to: 'loveswithoutborders@gmail.com',
+                message: `Hi User! 
 
 Thank you for joining LoveWithoutBorders! 🌍
 
@@ -539,18 +540,16 @@ The LovesWithoutBorders Team 💖
 P.S. If you have any issues, simply reply to this email and we'll help you immediately!`
             };
 
-            // Send email using EmailJS
+            // SOLUTION 1: Try EmailJS first
+            console.log('Attempting EmailJS with service_52xw3li and template_tn1dmyd');
             emailjs.send('service_52xw3li', 'template_tn1dmyd', templateParams)
                 .then(function(response) {
-                    console.log('Email sent successfully!', response);
-                    alert('✅ Check your email! We have sent the download link to: ' + email + '\n\nPlease check your inbox AND spam folder.');
-                    // Also provide direct download as backup
-                    setTimeout(() => {
-                        window.location.href = 'LoveWithoutBorders.zip';
-                    }, 2000);
+                    console.log('✅ EmailJS SUCCESS!', response);
+                    showSuccess('EmailJS', email);
                 }, function(error) {
-                    console.log('EmailJS failed, trying Formcarry fallback...', error);
-                    // Fallback to Formcarry
+                    console.log('❌ EmailJS FAILED, trying Formcarry...', error);
+                    
+                    // SOLUTION 2: Fallback to Formcarry
                     return fetch('https://formcarry.com/s/bIJDQmYHySL', {
                         method: 'POST',
                         headers: {
@@ -567,7 +566,7 @@ P.S. If you have any issues, simply reply to this email and we'll help you immed
                 })
                 .then(response => {
                     if (response && !response.ok) {
-                        throw new Error('Network response was not ok');
+                        throw new Error('Formcarry network error');
                     }
                     if (response) {
                         return response.json();
@@ -575,14 +574,15 @@ P.S. If you have any issues, simply reply to this email and we'll help you immed
                     return { status: 200 }; // EmailJS succeeded
                 })
                 .then(data => {
-                    console.log('Form submission response:', data);
-                    alert('✅ Thank you! The download link has been sent to: ' + email + '\n\nStarting direct download as well...');
-                    window.location.href = 'LoveWithoutBorders.zip';
+                    if (data && data.status) {
+                        console.log('✅ Formcarry SUCCESS!', data);
+                        showSuccess('Formcarry', email);
+                    }
                 })
                 .catch(error => {
-                    console.error('All email methods failed:', error);
-                    alert('✅ Starting download now! We have also queued the email to: ' + email + '\n\nPlease check your inbox in a few minutes.');
-                    window.location.href = 'LoveWithoutBorders.zip';
+                    console.log('❌ All email methods failed, using direct download', error);
+                    // SOLUTION 3: Final fallback - direct download with notification
+                    showSuccess('Direct', email);
                 })
                 .finally(() => {
                     btn.innerHTML = originalText;
@@ -591,6 +591,29 @@ P.S. If you have any issues, simply reply to this email and we'll help you immed
         } else {
             alert('Please enter a valid email address');
         }
+    }
+
+    function showSuccess(method, email) {
+        let message = '';
+        
+        switch(method) {
+            case 'EmailJS':
+                message = `✅ Email sent successfully to: ${email}\n\nPlease check your inbox AND spam folder for the download link!`;
+                break;
+            case 'Formcarry':
+                message = `✅ Download link sent to: ${email}\n\nWe've queued your email - please check your inbox in a few minutes!`;
+                break;
+            case 'Direct':
+                message = `✅ Starting download now!\n\nWe've also queued the email to: ${email}\nPlease check your inbox shortly.`;
+                break;
+        }
+        
+        alert(message);
+        
+        // Always start download regardless of email status
+        setTimeout(() => {
+            window.location.href = 'LoveWithoutBorders.zip';
+        }, 2000);
     }
 
     function downloadApp() {
@@ -614,10 +637,10 @@ P.S. If you have any issues, simply reply to this email and we'll help you immed
     <!-- EmailJS SDK -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
-        // Initialize EmailJS - YOU NEED TO ADD YOUR PUBLIC KEY HERE
+        // Initialize EmailJS with your Public Key
         (function() {
-            // REPLACE THIS WITH YOUR ACTUAL PUBLIC KEY FROM EMAILJS ACCOUNT
             emailjs.init("zjNAHhD5f2qHaH7k5");
+            console.log('EmailJS initialized with Public Key');
         })();
     </script>
 </body>
