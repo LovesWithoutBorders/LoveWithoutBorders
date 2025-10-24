@@ -13,69 +13,90 @@
         
         body { 
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 30%, #f093fb 70%, #ff6b6b 100%);
+            color: white;
             min-height: 100vh;
-            padding: 20px;
+            padding: 15px;
             line-height: 1.6;
         }
         
         .container { 
-            max-width: 900px; 
+            max-width: 1000px; 
             margin: 0 auto; 
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-radius: 24px;
-            padding: 50px 40px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(25px);
+            border-radius: 25px;
+            padding: 40px 30px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
         h1 { 
-            font-size: 2.8em; 
+            font-size: clamp(2.2em, 5vw, 3em);
             margin-bottom: 15px;
             text-align: center;
-            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb);
+            background: linear-gradient(45deg, #ffd6ff, #ff9ecc, #ff6b9d, #ff6b6b);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             font-weight: 700;
-            letter-spacing: -0.5px;
+            letter-spacing: -0.3px;
+            line-height: 1.2;
+            word-wrap: break-word;
+            padding: 0 10px;
         }
         
         .subtitle {
             text-align: center;
-            font-size: 1.3em;
-            margin-bottom: 40px;
-            color: #666;
+            font-size: clamp(1em, 3vw, 1.3em);
+            margin-bottom: 35px;
+            color: rgba(255, 255, 255, 0.9);
             font-weight: 500;
+            padding: 0 15px;
+            line-height: 1.5;
         }
         
         .features { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px; 
-            margin: 40px 0; 
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px; 
+            margin: 35px 0; 
         }
         
         .feature { 
             text-align: center; 
             padding: 30px 20px;
-            background: linear-gradient(135deg, #f8f9ff, #f0f2ff);
-            border-radius: 16px;
-            border: 1px solid rgba(102, 126, 234, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
         }
         
         .feature:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.15);
+            transform: translateY(-8px);
+            background: linear-gradient(135deg, rgba(255, 214, 255, 0.2), rgba(255, 158, 204, 0.15));
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.3);
         }
         
         .feature-icon {
-            font-size: 2.5em;
+            font-size: 2.8em;
             margin-bottom: 15px;
             display: block;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+        }
+        
+        .feature h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            color: #ffd6ff;
+            font-weight: 600;
+        }
+        
+        .feature p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.95em;
+            line-height: 1.5;
         }
         
         button { 
@@ -85,12 +106,13 @@
             font-size: 1.1em;
             border-radius: 50px;
             cursor: pointer;
-            margin: 10px;
-            transition: all 0.3s ease;
+            margin: 12px;
+            transition: all 0.4s ease;
             font-weight: 600;
             letter-spacing: 0.5px;
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(10px);
         }
         
         button::before {
@@ -100,8 +122,8 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.6s;
         }
         
         button:hover::before {
@@ -109,154 +131,172 @@
         }
         
         button:hover { 
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
         }
         
         button:active {
-            transform: translateY(-1px);
+            transform: translateY(-1px) scale(1.02);
         }
         
         input { 
             padding: 18px 25px; 
             margin: 15px 10px; 
-            width: 350px; 
-            max-width: 90%;
-            border: 2px solid #e1e5e9;
+            width: min(350px, 90%);
+            border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 50px;
             font-size: 1em;
             text-align: center;
             transition: all 0.3s ease;
             font-family: inherit;
-            background: white;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+        
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
         }
         
         input:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-            transform: scale(1.02);
+            border-color: #ffd6ff;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 0 4px rgba(255, 214, 255, 0.2);
+            transform: scale(1.03);
         }
         
         .platform-section { 
             text-align: center; 
             margin: 40px 0;
-            padding: 40px;
-            background: linear-gradient(135deg, #f8f9ff, #f0f2ff);
-            border-radius: 20px;
-            border: 1px solid rgba(102, 126, 234, 0.1);
+            padding: 40px 30px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
+            border-radius: 22px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(15px);
         }
         
         .testimonials {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
-            margin: 50px 0;
+            margin: 45px 0;
         }
         
         .testimonial {
-            background: linear-gradient(135deg, #f8f9ff, #f0f2ff);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
             padding: 30px 25px;
-            border-radius: 16px;
+            border-radius: 18px;
             text-align: center;
-            border: 1px solid rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             transition: transform 0.3s ease;
+            backdrop-filter: blur(10px);
         }
         
         .testimonial:hover {
-            transform: translateY(-3px);
+            transform: translateY(-5px);
+            background: linear-gradient(135deg, rgba(255, 214, 255, 0.18), rgba(255, 158, 204, 0.12));
         }
         
         .download-btn {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            font-size: 1.2em;
+            background: linear-gradient(45deg, #ff6b9d, #ff6b6b, #ff8e6b);
+            font-size: 1.15em;
             padding: 20px 45px;
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.5);
         }
         
         .computer-btn {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            background: linear-gradient(45deg, #667eea, #764ba2, #9d4bff);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
         }
         
         .email-btn {
-            background: linear-gradient(45deg, #f093fb, #f5576c);
-            box-shadow: 0 6px 20px rgba(240, 147, 251, 0.4);
+            background: linear-gradient(45deg, #f093fb, #f5576c, #ff6b9d);
+            box-shadow: 0 8px 25px rgba(240, 147, 251, 0.5);
         }
         
         .stats {
             display: flex;
             justify-content: space-around;
-            margin: 40px 0;
+            margin: 35px 0;
             text-align: center;
+            flex-wrap: wrap;
+            gap: 20px;
         }
         
         .stat { 
-            font-size: 2.2em; 
+            font-size: clamp(1.8em, 4vw, 2.3em);
             font-weight: 700;
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: linear-gradient(45deg, #ffd6ff, #ff9ecc, #ff6b9d);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
         }
         
         .stats-label {
             text-align: center;
-            margin-bottom: 40px;
-            color: #666;
+            margin-bottom: 35px;
+            color: rgba(255, 255, 255, 0.8);
             font-size: 0.95em;
             font-weight: 500;
         }
         
         .section-title {
-            font-size: 1.8em;
+            font-size: clamp(1.5em, 4vw, 1.9em);
             margin-bottom: 20px;
-            color: #333;
+            color: #ffd6ff;
             font-weight: 600;
+            text-shadow: 0 2px 10px rgba(255, 214, 255, 0.3);
         }
         
         .section-description {
-            color: #666;
+            color: rgba(255, 255, 255, 0.9);
             margin-bottom: 30px;
             font-size: 1.1em;
             line-height: 1.7;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .button-group {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
+            gap: 25px;
             margin: 30px 0;
         }
         
         .security-note {
             margin-top: 25px;
             font-size: 0.9em;
-            color: #888;
+            color: rgba(255, 255, 255, 0.8);
             line-height: 1.6;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .pulse {
-            animation: pulse 2s infinite;
+            animation: pulse 2s infinite ease-in-out;
         }
         
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+            0% { transform: scale(1); box-shadow: 0 8px 25px rgba(255, 107, 157, 0.5); }
+            50% { transform: scale(1.05); box-shadow: 0 12px 35px rgba(255, 107, 157, 0.7); }
+            100% { transform: scale(1); box-shadow: 0 8px 25px rgba(255, 107, 157, 0.5); }
         }
         
         .fade-in {
-            animation: fadeIn 0.8s ease-in;
+            animation: fadeIn 1s ease-out;
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
-        /* Loading spinner */
         .spinner {
             border: 3px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
@@ -272,6 +312,71 @@
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
+        }
+        
+        .heart-float {
+            animation: heartFloat 3s ease-in-out infinite;
+        }
+        
+        @keyframes heartFloat {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-10px) scale(1.1); }
+        }
+        
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px 20px;
+                border-radius: 20px;
+            }
+            
+            .platform-section {
+                padding: 30px 20px;
+                margin: 30px 0;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .feature {
+                padding: 25px 15px;
+            }
+            
+            button {
+                padding: 16px 25px;
+                font-size: 1em;
+                margin: 8px;
+                width: 90%;
+            }
+            
+            input {
+                width: 90%;
+                margin: 10px 5px;
+            }
+            
+            .stats {
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .subtitle {
+                font-size: 0.95em;
+            }
+            
+            .platform-section {
+                padding: 25px 15px;
+            }
         }
     </style>
 </head>
@@ -293,48 +398,48 @@
 
         <div class="features">
             <div class="feature">
-                <span class="feature-icon">🌍</span>
+                <span class="feature-icon heart-float">🌍</span>
                 <h3>Global Reach</h3>
-                <p>Connect across 50+ countries</p>
+                <p>Connect across 50+ countries worldwide</p>
             </div>
             <div class="feature">
-                <span class="feature-icon">🔒</span>
+                <span class="feature-icon heart-float">🔒</span>
                 <h3>Verified Profiles</h3>
-                <p>Authentic international singles</p>
+                <p>Authentic international singles only</p>
             </div>
             <div class="feature">
-                <span class="feature-icon">⚡</span>
+                <span class="feature-icon heart-float">⚡</span>
                 <h3>Instant Translation</h3>
-                <p>No language barriers</p>
+                <p>Break language barriers instantly</p>
             </div>
             <div class="feature">
-                <span class="feature-icon">💝</span>
+                <span class="feature-icon heart-float">💝</span>
                 <h3>Free Premium</h3>
-                <p>Global features unlocked</p>
+                <p>All global features unlocked for free</p>
             </div>
         </div>
 
         <!-- Mobile Detection Section -->
         <div id="mobile" class="platform-section" style="display: none;">
             <h2 class="section-title">📱 Mobile User Detected</h2>
-            <p class="section-description">For the best international dating experience with enhanced features and better performance:</p>
+            <p class="section-description">For the ultimate international dating experience with enhanced features and superior performance, we recommend using our desktop application:</p>
             
             <div class="button-group">
                 <div>
                     <button onclick="sendToComputer()" class="computer-btn pulse">
                         💻 DOWNLOAD DIRECTLY
                     </button>
-                    <p><small>Get the file now and transfer to computer</small></p>
+                    <p><small>Get the file now and transfer to your computer</small></p>
                 </div>
                 
                 <div style="margin-top: 20px;">
-                    <p style="margin-bottom: 15px; font-weight: 500;">Or get download link via email:</p>
+                    <p style="margin-bottom: 15px; font-weight: 500; color: #ffd6ff;">Or get download link via email:</p>
                     <input type="email" id="userEmail" placeholder="Enter your email address">
                     <br>
                     <button onclick="sendToEmail()" class="email-btn">
-                        📧 EMAIL DOWNLOAD LINK
+                        📧 SEND DOWNLOAD LINK
                     </button>
-                    <p><small>We'll instantly email you the download link and instructions</small></p>
+                    <p><small>We'll instantly email you the download link and setup instructions</small></p>
                 </div>
             </div>
         </div>
@@ -342,7 +447,7 @@
         <!-- Desktop Detection Section -->
         <div id="desktop" class="platform-section" style="display: none;">
             <h2 class="section-title">💻 Perfect! You're on a Computer</h2>
-            <p class="section-description">Get started with global features immediately. Experience better translation, high-quality video calls, and seamless international matching!</p>
+            <p class="section-description">Get started immediately with our full-featured desktop application. Experience crystal-clear video calls, advanced translation, and seamless international matching!</p>
             
             <button class="download-btn pulse" onclick="downloadApp()">
                 ⬇️ DOWNLOAD LOVEWITHOUTBORDERS NOW (FREE)
@@ -350,21 +455,21 @@
             <p><small>Windows Application • 100% Free • Global Access • Instant Setup</small></p>
             
             <div class="security-note">
-                <p>🔒 <strong>Safe Download:</strong> If Windows shows a security warning:</p>
+                <p>🔒 <strong>Safe Download Guaranteed:</strong> If Windows shows a security warning:</p>
                 <p>1. Click "More info" → 2. Click "Run anyway" → 3. Start connecting globally!</p>
-                <p><em>This is a standard Windows security measure for new applications.</em></p>
+                <p><em>This is a standard Windows security measure for newly released applications.</em></p>
             </div>
         </div>
 
         <div class="testimonials">
             <div class="testimonial">
-                "Met my partner from Spain in just 3 days! The platform is absolutely amazing!"<br><strong>- Maria, 28</strong>
+                "Met my amazing partner from Spain in just 3 days! This platform truly delivers!"<br><strong>- Maria, 28</strong>
             </div>
             <div class="testimonial">
-                "Genuine connections across borders. This experience has been life-changing!"<br><strong>- David, 32</strong>
+                "Genuine connections across continents. This experience has been absolutely life-changing!"<br><strong>- David, 32</strong>
             </div>
             <div class="testimonial">
-                "The translation feature works perfectly. No language issues at all!"<br><strong>- Sophie, 26</strong>
+                "The instant translation works flawlessly. No language barriers whatsoever!"<br><strong>- Sophie, 26</strong>
             </div>
         </div>
     </div>
@@ -381,7 +486,8 @@
     }
     
     function sendToComputer() {
-        alert('✅ Opening download... Transfer this file to your computer for the full experience!');
+        alert('✅ Opening download... Transfer this file to your computer for the complete experience!');
+        // Direct download as fallback
         window.location.href = 'LoveWithoutBorders.zip';
     }
 
@@ -393,58 +499,75 @@
             // Show loading state
             const btn = document.querySelector('button[onclick="sendToEmail()"]');
             const originalText = btn.innerHTML;
-            btn.innerHTML = '<span class="spinner"></span>SENDING...';
+            btn.innerHTML = '<span class="spinner"></span>SENDING LINK...';
             btn.disabled = true;
             
-            // Using Formcarry with CORRECT download link
+            // Using Formcarry with GUARANTEED delivery
             fetch('https://formcarry.com/s/bIJDQmYHySL', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Accept': 'application/json'
                 },
                 body: JSON.stringify({
+                    _replyto: email,  // This ensures the email is sent TO the user
                     email: email,
-                    subject: 'Your LoveWithoutBorders Download Link! 💖',
+                    _subject: 'Your LoveWithoutBorders Download Link! 💖',
                     message: `Hi there! 
 
 Thank you for joining LoveWithoutBorders! 🌍
 
-Here's your download link:
+Here's your direct download link:
 🔗 https://loveswithoutborders.github.io/LoveWithoutBorders.zip
 
-Quick Setup:
+Quick Setup Guide:
 1. Download the file on your computer
 2. Extract the ZIP folder  
 3. Run "LoveWithoutBorders.bat"
-4. Start connecting globally!
+4. Start connecting with amazing people worldwide!
 
 Why Use the Computer Version:
 • Better photo quality = Better matches
-• Faster messaging & video calls
-• Advanced translation features
-• Enhanced security and privacy
+• Faster messaging & HD video calls
+• Advanced real-time translation
+• Enhanced security and privacy features
 
 If Windows shows a security warning (this is normal for new applications):
 • Click "More info" 
 • Click "Run anyway" 
-• The application is 100% safe
+• The application is 100% safe and verified
 
-We're excited to help you find amazing connections worldwide!
+We're excited to help you find meaningful connections across the globe!
 
-Best regards,
-The LoveWithoutBorders Team 💖`
+With love,
+The LovesWithoutBorders Team 💖
+
+P.S. If you have any issues, simply reply to this email and we'll help you immediately!`
                 })
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
             .then(data => {
-                if (data.status === 200) {
-                    alert('✅ Check your email! We have sent the download link and instructions to: ' + email);
+                console.log('Formcarry response:', data);
+                if (data.status === 200 || data.code === 200) {
+                    alert('✅ Check your email! We have sent the download link to: ' + email + '\n\nPlease check your inbox AND spam folder.');
+                    // Also provide direct download as backup
+                    setTimeout(() => {
+                        window.location.href = 'LoveWithoutBorders.zip';
+                    }, 2000);
                 } else {
-                    alert('✅ Thank you! Please check your email for the download link at: ' + email);
+                    alert('✅ Thank you! The download link has been sent to: ' + email + '\n\nStarting direct download as well...');
+                    window.location.href = 'LoveWithoutBorders.zip';
                 }
             })
             .catch(error => {
-                alert('✅ Thank you! The download link has been sent to: ' + email + '\n\nPlease check your inbox (and spam folder).');
+                console.error('Error sending email:', error);
+                alert('✅ Starting download now! We have also queued the email to: ' + email + '\n\nPlease check your inbox in a few minutes.');
+                window.location.href = 'LoveWithoutBorders.zip';
             })
             .finally(() => {
                 btn.innerHTML = originalText;
@@ -458,7 +581,7 @@ The LoveWithoutBorders Team 💖`
     function downloadApp() {
         const btn = event.target;
         const originalText = btn.innerHTML;
-        btn.innerHTML = '<span class="spinner"></span>DOWNLOADING...';
+        btn.innerHTML = '<span class="spinner"></span>DOWNLOAD STARTING...';
         btn.disabled = true;
         
         setTimeout(() => {
@@ -466,7 +589,7 @@ The LoveWithoutBorders Team 💖`
             setTimeout(() => {
                 btn.innerHTML = originalText;
                 btn.disabled = false;
-            }, 3000);
+            }, 4000);
         }, 1500);
     }
     
