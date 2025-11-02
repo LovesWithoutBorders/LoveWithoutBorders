@@ -19,6 +19,40 @@
             padding: 15px;
             line-height: 1.6;
             overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        .bg-element {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            animation: float 20s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+            }
+            33% {
+                transform: translateY(-30px) translateX(100px) rotate(120deg);
+            }
+            66% {
+                transform: translateY(20px) translateX(-50px) rotate(240deg);
+            }
+            100% {
+                transform: translateY(0) translateX(0) rotate(360deg);
+            }
         }
         
         .container { 
@@ -32,6 +66,29 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             position: relative;
             z-index: 2;
+        }
+        
+        .header-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .header-btn {
+            padding: 10px 20px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .header-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
         }
         
         h1 { 
@@ -510,6 +567,10 @@
                 margin-right: 0;
                 margin-bottom: 15px;
             }
+            
+            .header-buttons {
+                justify-content: center;
+            }
         }
         
         @media (max-width: 480px) {
@@ -532,10 +593,18 @@
     </style>
 </head>
 <body>
+    <!-- Animated Background -->
+    <div class="animated-bg" id="animatedBg"></div>
+    
     <!-- Floating hearts background -->
     <div class="floating-hearts" id="floatingHearts"></div>
     
     <div class="container fade-in">
+        <div class="header-buttons">
+            <button class="header-btn" onclick="showSignIn()">Sign In</button>
+            <button class="header-btn" onclick="showSignUp()">Sign Up</button>
+        </div>
+        
         <h1>💖 LovesWithoutBorders - MatchMaker</h1>
         <p class="subtitle">
             Connect Globally • Real International Matches • No Language Barriers
@@ -639,7 +708,7 @@
                 <ol>
                     <li><strong>Download</strong> the app above</li>
                     <li><strong>Transfer it</strong> to your computer</li>
-                    <li><strong>Run "MatchMaker.exe"</strong> As Administrator</li>
+                    <li><strong>Extract the ZIP file</strong> and run "MatchMaker.exe"</li>
                     <li><strong>Start connecting</strong> globally!</li>
                 </ol>
             </div>
@@ -649,6 +718,19 @@
         <div id="desktop" class="platform-section" style="display: none;">
             <h2 class="section-title">💻 Perfect! You're on a Computer</h2>
             <p class="section-description">Get started immediately with our full-featured desktop application. Experience crystal-clear video calls, advanced translation, and seamless international matching!</p>
+            
+            <div class="features">
+                <div class="feature">
+                    <span class="feature-icon heart-float">🎥</span>
+                    <h3>HD Video Calls</h3>
+                    <p>Crystal clear video chat with your matches</p>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon heart-float">🔍</span>
+                    <h3>Advanced Matching</h3>
+                    <p>Smart algorithms find your perfect match</p>
+                </div>
+            </div>
             
             <button class="download-btn pulse" onclick="downloadApp()">
                 ⬇️ DOWNLOAD THE MATCH MAKER APP NOW (FREE)
@@ -728,8 +810,8 @@
         alert('✅ Download starting! Transfer this file to your computer and follow the simple setup instructions.');
         
         setTimeout(() => {
-            // Fixed download link
-            window.location.href = 'https://loveswithoutborders.github.io/MatchMaker.zip';
+            // Fixed download link - using the correct filename
+            window.location.href = 'MatchMaker.zip';
             setTimeout(() => {
                 btn.innerHTML = originalText;
                 btn.disabled = false;
@@ -746,13 +828,21 @@
         alert('✅ Download starting! Follow the simple setup instructions to get started.');
         
         setTimeout(() => {
-            // Fixed download link
-            window.location.href = 'https://loveswithoutborders.github.io/MatchMaker.zip';
+            // Fixed download link - using the correct filename
+            window.location.href = 'MatchMaker.zip';
             setTimeout(() => {
                 btn.innerHTML = originalText;
                 btn.disabled = false;
             }, 4000);
         }, 1500);
+    }
+    
+    function showSignIn() {
+        alert('To access your account, please download and install the MatchMaker application. Sign in functionality is available in the desktop app.');
+    }
+    
+    function showSignUp() {
+        alert('To create a new account, please download and install the MatchMaker application. Registration is quick and easy in the desktop app.');
     }
     
     // Create floating hearts
@@ -768,6 +858,23 @@
             heart.style.animationDuration = (Math.random() * 10 + 10) + 's';
             heart.style.animationDelay = Math.random() * 5 + 's';
             container.appendChild(heart);
+        }
+    }
+    
+    // Create animated background
+    function createAnimatedBackground() {
+        const container = document.getElementById('animatedBg');
+        
+        for (let i = 0; i < 15; i++) {
+            const element = document.createElement('div');
+            element.className = 'bg-element';
+            element.style.width = Math.random() * 100 + 50 + 'px';
+            element.style.height = element.style.width;
+            element.style.left = Math.random() * 100 + 'vw';
+            element.style.top = Math.random() * 100 + 'vh';
+            element.style.animationDuration = (Math.random() * 20 + 20) + 's';
+            element.style.animationDelay = Math.random() * 10 + 's';
+            container.appendChild(element);
         }
     }
     
@@ -809,6 +916,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         detectPlatform();
         createFloatingHearts();
+        createAnimatedBackground();
         initTestimonialSlider();
         animateStats();
     });
