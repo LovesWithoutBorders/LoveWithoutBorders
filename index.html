@@ -927,3 +927,40 @@
         setInterval(() => {
             slides[currentSlide].classList.remove('active');
             currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }, 5000);
+    }
+    
+    // Live stats counter
+    function animateStats() {
+        const stats = document.querySelectorAll('.stat');
+        const targetValues = [7243, 94, 8];
+        
+        stats.forEach((stat, index) => {
+            const target = targetValues[index];
+            let current = 0;
+            const increment = target / 50;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                stat.textContent = index === 1 ? 
+                    Math.floor(current) + '%' : 
+                    Math.floor(current) + (index === 0 ? '+' : 'min');
+            }, 50);
+        });
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        detectPlatform();
+        createFloatingHearts();
+        createAnimatedBackground();
+        initTestimonialSlider();
+        animateStats();
+    });
+    </script>
+</body>
+</html>
