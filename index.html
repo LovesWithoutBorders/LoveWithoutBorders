@@ -498,7 +498,7 @@
             flex: 1;
         }
         
-        .privacy-section {
+        .privacy-section, .about-section {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
             padding: 25px;
@@ -516,6 +516,24 @@
         .privacy-feature {
             text-align: center;
             padding: 15px;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 15px;
+            object-fit: cover;
+            border: 3px solid rgba(255, 255, 255, 0.3);
         }
         
         /* Mobile responsiveness */
@@ -570,6 +588,16 @@
             
             .header-buttons {
                 justify-content: center;
+            }
+            
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .about-image {
+                width: 150px;
+                height: 150px;
             }
         }
         
@@ -640,6 +668,28 @@
                 <h3>Free Premium</h3>
                 <p>All global features unlocked for free</p>
             </div>
+            <div class="feature">
+                <span class="feature-icon heart-float">🎥</span>
+                <h3>HD Video Calls</h3>
+                <p>Crystal clear video chat with your matches</p>
+            </div>
+            <div class="feature">
+                <span class="feature-icon heart-float">🔍</span>
+                <h3>Advanced Matching</h3>
+                <p>Smart algorithms find your perfect match</p>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <div class="about-section">
+            <h2 class="section-title">About LovesWithoutBorders</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="section-description">Based in beautiful Denver, Colorado, LovesWithoutBorders was founded with a simple mission: to connect hearts across continents without boundaries. Our team of relationship experts and technology innovators have created the world's most advanced international dating platform.</p>
+                    <p class="section-description">We believe that love knows no borders, and our success stories from over 50 countries prove that meaningful connections can happen anywhere, between anyone. Our Denver headquarters serves as the heart of our global operations, bringing people together from every corner of the world.</p>
+                </div>
+                <img src="https://images.unsplash.com/photo-1577083551085-2aa28d9762c6?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Denver Office" class="about-image">
+            </div>
         </div>
 
         <!-- Live Activity Feed -->
@@ -708,7 +758,7 @@
                 <ol>
                     <li><strong>Download</strong> the app above</li>
                     <li><strong>Transfer it</strong> to your computer</li>
-                    <li><strong>Extract the ZIP file</strong> and run "MatchMaker.exe"</li>
+                    <li><strong>Extract the ZIP file</strong> and run "LoveWithoutBorders.bat" as Administrator</li>
                     <li><strong>Start connecting</strong> globally!</li>
                 </ol>
             </div>
@@ -719,21 +769,8 @@
             <h2 class="section-title">💻 Perfect! You're on a Computer</h2>
             <p class="section-description">Get started immediately with our full-featured desktop application. Experience crystal-clear video calls, advanced translation, and seamless international matching!</p>
             
-            <div class="features">
-                <div class="feature">
-                    <span class="feature-icon heart-float">🎥</span>
-                    <h3>HD Video Calls</h3>
-                    <p>Crystal clear video chat with your matches</p>
-                </div>
-                <div class="feature">
-                    <span class="feature-icon heart-float">🔍</span>
-                    <h3>Advanced Matching</h3>
-                    <p>Smart algorithms find your perfect match</p>
-                </div>
-            </div>
-            
             <button class="download-btn pulse" onclick="downloadApp()">
-                ⬇️ DOWNLOAD THE MATCH MAKER APP NOW (FREE)
+                ⬇️ DOWNLOAD LOVE WITHOUT BORDERS APP NOW (FREE)
             </button>
             <p><small>Windows Application • 100% Free • Global Access • Instant Setup</small></p>
             
@@ -742,7 +779,7 @@
                 <ol>
                     <li><strong>Download</strong> the app above</li>
                     <li><strong>Extract</strong> the ZIP file</li>
-                    <li><strong>Run "MatchMaker.exe"</strong> As Administrator</li>
+                    <li><strong>Run "LoveWithoutBorders.bat"</strong> As Administrator</li>
                     <li><strong>Start connecting</strong> globally!</li>
                 </ol>
             </div>
@@ -750,8 +787,8 @@
 
         <!-- Privacy Section -->
         <div class="privacy-section">
-            <h2 class="section-title">🔒 Your Privacy & Security Matters</h2>
-            <p class="section-description">We take your privacy seriously with advanced security measures to protect your data and ensure a safe dating experience.</p>
+            <h2 class="section-title">🔒 Privacy Policy & Security</h2>
+            <p class="section-description">Your privacy and security are our top priorities. We implement industry-leading measures to protect your data and ensure a safe dating experience.</p>
             
             <div class="privacy-features">
                 <div class="privacy-feature">
@@ -774,6 +811,10 @@
                     <h4>Data Protection</h4>
                     <p>We never share your data with third parties</p>
                 </div>
+            </div>
+            
+            <div class="security-note">
+                <p><strong>Full Privacy Policy:</strong> We collect only necessary information to provide our service. Your data is stored securely and never sold. You can delete your account and all associated data at any time.</p>
             </div>
         </div>
 
@@ -810,8 +851,8 @@
         alert('✅ Download starting! Transfer this file to your computer and follow the simple setup instructions.');
         
         setTimeout(() => {
-            // Fixed download link - using the correct filename
-            window.location.href = 'MatchMaker.zip';
+            // Using the correct file name from your repository
+            window.location.href = 'LoveWithoutBorders.zip';
             setTimeout(() => {
                 btn.innerHTML = originalText;
                 btn.disabled = false;
@@ -828,8 +869,8 @@
         alert('✅ Download starting! Follow the simple setup instructions to get started.');
         
         setTimeout(() => {
-            // Fixed download link - using the correct filename
-            window.location.href = 'MatchMaker.zip';
+            // Using the correct file name from your repository
+            window.location.href = 'LoveWithoutBorders.zip';
             setTimeout(() => {
                 btn.innerHTML = originalText;
                 btn.disabled = false;
@@ -838,11 +879,11 @@
     }
     
     function showSignIn() {
-        alert('To access your account, please download and install the MatchMaker application. Sign in functionality is available in the desktop app.');
+        alert('To access your account, please download and install the LoveWithoutBorders application. Sign in functionality is available in the desktop app.');
     }
     
     function showSignUp() {
-        alert('To create a new account, please download and install the MatchMaker application. Registration is quick and easy in the desktop app.');
+        alert('To create a new account, please download and install the LoveWithoutBorders application. Registration is quick and easy in the desktop app.');
     }
     
     // Create floating hearts
@@ -886,40 +927,3 @@
         setInterval(() => {
             slides[currentSlide].classList.remove('active');
             currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }, 5000);
-    }
-    
-    // Live stats counter
-    function animateStats() {
-        const stats = document.querySelectorAll('.stat');
-        const targetValues = [7243, 94, 8];
-        
-        stats.forEach((stat, index) => {
-            const target = targetValues[index];
-            let current = 0;
-            const increment = target / 50;
-            
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    current = target;
-                    clearInterval(timer);
-                }
-                stat.textContent = index === 1 ? 
-                    Math.floor(current) + '%' : 
-                    Math.floor(current) + (index === 0 ? '+' : 'min');
-            }, 50);
-        });
-    }
-    
-    document.addEventListener('DOMContentLoaded', function() {
-        detectPlatform();
-        createFloatingHearts();
-        createAnimatedBackground();
-        initTestimonialSlider();
-        animateStats();
-    });
-    </script>
-</body>
-</html>
