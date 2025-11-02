@@ -601,8 +601,8 @@
     
     <div class="container fade-in">
         <div class="header-buttons">
-            <button class="header-btn" onclick="downloadApp(event)">Sign In</button>
-            <button class="header-btn" onclick="downloadApp(event)">Sign Up</button>
+            <button class="header-btn" onclick="downloadApp(this)">Sign In</button>
+            <button class="header-btn" onclick="downloadApp(this)">Sign Up</button>
         </div>
         
         <h1>💖 LovesWithoutBorders - MatchOptimizer</h1>
@@ -706,7 +706,7 @@
             
             <div class="button-group">
                 <div>
-                    <button onclick="downloadApp(event)" class="computer-btn pulse">
+                    <button onclick="downloadApp(this)" class="computer-btn pulse">
                         💻 DOWNLOAD MATCHOPTIMIZER FOR COMPUTER
                     </button>
                     <p><small>Get the app now and transfer to your computer</small></p>
@@ -729,7 +729,7 @@
             <h2 class="section-title">💻 Perfect! You're on a Computer</h2>
             <p class="section-description">Get started immediately with our full-featured desktop application. Experience crystal-clear video calls, advanced translation, and seamless international matching!</p>
             
-            <button class="download-btn pulse" onclick="downloadApp(event)">
+            <button class="download-btn pulse" onclick="downloadApp(this)">
                 ⬇️ DOWNLOAD MATCHOPTIMIZER APP NOW (FREE)
             </button>
             <p><small>Windows Application • 100% Free • Global Access • Instant Setup</small></p>
@@ -802,16 +802,9 @@
         }
     }
     
-    function downloadApp(event) {
-        // Get the clicked button safely
-        let btn;
-        if (event && event.target) {
-            btn = event.target;
-        } else {
-            // Fallback for direct function calls
-            btn = document.querySelector('.download-btn, .computer-btn, .header-btn');
-        }
-        
+    function downloadApp(button) {
+        // Use the button directly passed as parameter
+        const btn = button;
         const originalText = btn.innerHTML;
         
         // Show loading state
