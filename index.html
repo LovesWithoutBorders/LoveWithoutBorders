@@ -498,7 +498,7 @@
             flex: 1;
         }
         
-        .privacy-section, .about-section {
+        .privacy-section {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
             padding: 25px;
@@ -516,24 +516,6 @@
         .privacy-feature {
             text-align: center;
             padding: 15px;
-        }
-        
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
-        
-        .about-text {
-            flex: 1;
-        }
-        
-        .about-image {
-            width: 200px;
-            height: 200px;
-            border-radius: 15px;
-            object-fit: cover;
-            border: 3px solid rgba(255, 255, 255, 0.3);
         }
         
         /* Mobile responsiveness */
@@ -582,22 +564,12 @@
             }
             
             .testimonial-avatar {
-                margin-right: 0;
+                margin-right = 0;
                 margin-bottom: 15px;
             }
             
             .header-buttons {
                 justify-content: center;
-            }
-            
-            .about-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .about-image {
-                width: 150px;
-                height: 150px;
             }
         }
         
@@ -677,18 +649,6 @@
                 <span class="feature-icon heart-float">🔍</span>
                 <h3>Advanced Matching</h3>
                 <p>Smart algorithms find your perfect match</p>
-            </div>
-        </div>
-
-        <!-- About Section -->
-        <div class="about-section">
-            <h2 class="section-title">About LovesWithoutBorders</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p class="section-description">Based in beautiful Denver, Colorado, LovesWithoutBorders was founded with a simple mission: to connect hearts across continents without boundaries. Our team of relationship experts and technology innovators have created the world's most advanced international dating platform.</p>
-                    <p class="section-description">We believe that love knows no borders, and our success stories from over 50 countries prove that meaningful connections can happen anywhere, between anyone. Our Denver headquarters serves as the heart of our global operations, bringing people together from every corner of the world.</p>
-                </div>
-                <img src="https://images.unsplash.com/photo-1577083551085-2aa28d9762c6?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Denver Office" class="about-image">
             </div>
         </div>
 
@@ -843,16 +803,23 @@
     }
     
     function downloadApp() {
-        const btn = event ? event.target : document.querySelector('.download-btn, .computer-btn, .header-btn');
+        // Get the clicked button
+        const btn = event.target;
         const originalText = btn.innerHTML;
+        
+        // Show loading state
         btn.innerHTML = '<span class="spinner"></span>DOWNLOADING...';
         btn.disabled = true;
         
+        // Show alert
         alert('✅ MatchMaker download starting! Follow the simple setup instructions to get started.');
         
+        // Start download after short delay
         setTimeout(() => {
-            // Using the correct file name - MatchMaker.zip
+            // Download the MatchMaker.zip file
             window.location.href = 'MatchMaker.zip';
+            
+            // Reset button after download
             setTimeout(() => {
                 btn.innerHTML = originalText;
                 btn.disabled = false;
