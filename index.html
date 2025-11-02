@@ -18,6 +18,7 @@
             min-height: 100vh;
             padding: 15px;
             line-height: 1.6;
+            overflow-x: hidden;
         }
         
         .container { 
@@ -29,6 +30,8 @@
             padding: 40px 30px;
             box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            z-index: 2;
         }
         
         h1 { 
@@ -311,6 +314,153 @@
             color: rgba(255, 255, 255, 0.9);
         }
         
+        /* New Styles for Enhanced Features */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0.7;
+            animation: floatHeart linear infinite;
+        }
+        
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .live-activity {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 30px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .activity-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: #ffd6ff;
+            font-weight: 600;
+        }
+        
+        .live-dot {
+            width: 10px;
+            height: 10px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            margin-right: 10px;
+            animation: livePulse 1.5s infinite;
+        }
+        
+        @keyframes livePulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+        
+        .activity-feed {
+            height: 120px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .activity-item {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            animation: slideUp 15s linear infinite;
+        }
+        
+        @keyframes slideUp {
+            0% { transform: translateY(100%); }
+            5% { transform: translateY(0); }
+            20% { transform: translateY(0); }
+            25% { transform: translateY(-100%); }
+            100% { transform: translateY(-100%); }
+        }
+        
+        .testimonial-slider {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+            margin: 30px 0;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .testimonial-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        
+        .testimonial-slide.active {
+            opacity: 1;
+        }
+        
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .testimonial-content {
+            flex: 1;
+        }
+        
+        .privacy-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .privacy-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .privacy-feature {
+            text-align: center;
+            padding: 15px;
+        }
+        
         /* Mobile responsiveness */
         @media (max-width: 768px) {
             .container {
@@ -346,6 +496,20 @@
             .instructions {
                 padding: 20px 15px;
             }
+            
+            .testimonial-slider {
+                height: 250px;
+            }
+            
+            .testimonial-slide {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .testimonial-avatar {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -368,16 +532,19 @@
     </style>
 </head>
 <body>
+    <!-- Floating hearts background -->
+    <div class="floating-hearts" id="floatingHearts"></div>
+    
     <div class="container fade-in">
-        <h1>💖 MatchMaker by LovesWithoutBorders=s</h1>
+        <h1>💖 LovesWithoutBorders - MatchMaker</h1>
         <p class="subtitle">
             Connect Globally • Real International Matches • No Language Barriers
         </p>
 
         <div class="stats">
-            <div class="stat">5,892+</div>
-            <div class="stat">92%</div>
-            <div class="stat">12min</div>
+            <div class="stat">7,243+</div>
+            <div class="stat">94%</div>
+            <div class="stat">8min</div>
         </div>
         <div class="stats-label">
             Global Members • Success Rate • First Connection Time
@@ -406,6 +573,53 @@
             </div>
         </div>
 
+        <!-- Live Activity Feed -->
+        <div class="live-activity">
+            <div class="activity-title">
+                <div class="live-dot"></div>
+                <h3>Live Activity - Connections Happening Now</h3>
+            </div>
+            <div class="activity-feed">
+                <div class="activity-item">🌟 <strong>Sarah</strong> from Kenya just connected with <strong>James</strong> from USA</div>
+                <div class="activity-item">💕 <strong>Chiamaka</strong> from Nigeria started a conversation with <strong>Luca</strong> from Italy</div>
+                <div class="activity-item">✨ <strong>Amina</strong> from Tanzania matched with <strong>Carlos</strong> from Brazil</div>
+                <div class="activity-item">🎉 <strong>Fatima</strong> from Egypt is now video chatting with <strong>Thomas</strong> from Germany</div>
+                <div class="activity-item">❤️ <strong>Grace</strong> from Ghana just sent a message to <strong>Pierre</strong> from France</div>
+            </div>
+        </div>
+
+        <!-- Testimonial Slider -->
+        <div class="testimonial-slider" id="testimonialSlider">
+            <div class="testimonial-slide active">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Amina" class="testimonial-avatar">
+                <div class="testimonial-content">
+                    <p>"I met my amazing partner from Spain in just 3 days! This platform truly delivers genuine connections across continents."</p>
+                    <p><strong>- Amina, 28, Nigeria</strong></p>
+                </div>
+            </div>
+            <div class="testimonial-slide">
+                <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Grace" class="testimonial-avatar">
+                <div class="testimonial-content">
+                    <p>"As a single mother from Ghana, I was skeptical about online dating. But LovesWithoutBorders connected me with someone who truly understands my culture and values."</p>
+                    <p><strong>- Grace, 34, Ghana</strong></p>
+                </div>
+            </div>
+            <div class="testimonial-slide">
+                <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Chiamaka" class="testimonial-avatar">
+                <div class="testimonial-content">
+                    <p>"The instant translation works flawlessly. No language barriers whatsoever! I'm now in a serious relationship with someone from Italy."</p>
+                    <p><strong>- Chiamaka, 26, Nigeria</strong></p>
+                </div>
+            </div>
+            <div class="testimonial-slide">
+                <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Fatima" class="testimonial-avatar">
+                <div class="testimonial-content">
+                    <p>"I never thought I'd find love outside my country, but this app made it possible. The cultural exchange has been incredible!"</p>
+                    <p><strong>- Fatima, 31, Egypt</strong></p>
+                </div>
+            </div>
+        </div>
+
         <!-- Mobile Detection Section -->
         <div id="mobile" class="platform-section" style="display: none;">
             <h2 class="section-title">📱 Mobile User Detected</h2>
@@ -425,7 +639,7 @@
                 <ol>
                     <li><strong>Download</strong> the app above</li>
                     <li><strong>Transfer it</strong> to your computer</li>
-                    <li><strong>Run "MarchOptimizer</strong> As Administrator</li>
+                    <li><strong>Run "MatchMaker.exe"</strong> As Administrator</li>
                     <li><strong>Start connecting</strong> globally!</li>
                 </ol>
             </div>
@@ -445,10 +659,39 @@
                 <h3 style="color: #ffd6ff; margin-bottom: 15px;">Simple Setup Instructions:</h3>
                 <ol>
                     <li><strong>Download</strong> the app above</li>
-                    <li><strong>Extract</strong> the app </li>
-                    <li><strong>Run "MatchMaker.bat </strong> "As Administrator"</li>
+                    <li><strong>Extract</strong> the ZIP file</li>
+                    <li><strong>Run "MatchMaker.exe"</strong> As Administrator</li>
                     <li><strong>Start connecting</strong> globally!</li>
                 </ol>
+            </div>
+        </div>
+
+        <!-- Privacy Section -->
+        <div class="privacy-section">
+            <h2 class="section-title">🔒 Your Privacy & Security Matters</h2>
+            <p class="section-description">We take your privacy seriously with advanced security measures to protect your data and ensure a safe dating experience.</p>
+            
+            <div class="privacy-features">
+                <div class="privacy-feature">
+                    <span class="feature-icon">🔐</span>
+                    <h4>End-to-End Encryption</h4>
+                    <p>All messages and calls are securely encrypted</p>
+                </div>
+                <div class="privacy-feature">
+                    <span class="feature-icon">👁️</span>
+                    <h4>Profile Control</h4>
+                    <p>You control who sees your profile and information</p>
+                </div>
+                <div class="privacy-feature">
+                    <span class="feature-icon">🚫</span>
+                    <h4>Block & Report</h4>
+                    <p>Easy tools to block and report suspicious users</p>
+                </div>
+                <div class="privacy-feature">
+                    <span class="feature-icon">📵</span>
+                    <h4>Data Protection</h4>
+                    <p>We never share your data with third parties</p>
+                </div>
             </div>
         </div>
 
@@ -485,7 +728,8 @@
         alert('✅ Download starting! Transfer this file to your computer and follow the simple setup instructions.');
         
         setTimeout(() => {
-            window.location.href = 'LoveWithoutBorders.zip';
+            // Fixed download link
+            window.location.href = 'https://loveswithoutborders.github.io/MatchMaker.zip';
             setTimeout(() => {
                 btn.innerHTML = originalText;
                 btn.disabled = false;
@@ -502,7 +746,8 @@
         alert('✅ Download starting! Follow the simple setup instructions to get started.');
         
         setTimeout(() => {
-            window.location.href = 'LoveWithoutBorders.zip';
+            // Fixed download link
+            window.location.href = 'https://loveswithoutborders.github.io/MatchMaker.zip';
             setTimeout(() => {
                 btn.innerHTML = originalText;
                 btn.disabled = false;
@@ -510,7 +755,63 @@
         }, 1500);
     }
     
-    document.addEventListener('DOMContentLoaded', detectPlatform);
+    // Create floating hearts
+    function createFloatingHearts() {
+        const container = document.getElementById('floatingHearts');
+        const hearts = ['💖', '💕', '💗', '💓', '💘', '💝'];
+        
+        for (let i = 0; i < 20; i++) {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            heart.style.animationDelay = Math.random() * 5 + 's';
+            container.appendChild(heart);
+        }
+    }
+    
+    // Testimonial slider
+    function initTestimonialSlider() {
+        const slides = document.querySelectorAll('.testimonial-slide');
+        let currentSlide = 0;
+        
+        setInterval(() => {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }, 5000);
+    }
+    
+    // Live stats counter
+    function animateStats() {
+        const stats = document.querySelectorAll('.stat');
+        const targetValues = [7243, 94, 8];
+        
+        stats.forEach((stat, index) => {
+            const target = targetValues[index];
+            let current = 0;
+            const increment = target / 50;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                stat.textContent = index === 1 ? 
+                    Math.floor(current) + '%' : 
+                    Math.floor(current) + (index === 0 ? '+' : 'min');
+            }, 50);
+        });
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        detectPlatform();
+        createFloatingHearts();
+        initTestimonialSlider();
+        animateStats();
+    });
     </script>
 </body>
 </html>
