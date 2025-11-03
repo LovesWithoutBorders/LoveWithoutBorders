@@ -3,17 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#667eea">
     <title>LovesWithoutBorders - Find International Matches</title>
     <style>
+        /* CSS Reset with better compatibility */
         * { 
             margin: 0; 
             padding: 0; 
             box-sizing: border-box; 
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        html {
+            -webkit-text-size-adjust: 100%;
+            -webkit-font-smoothing: antialiased;
         }
         
         body { 
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; 
             background: linear-gradient(135deg, #667eea 0%, #764ba2 30%, #f093fb 70%, #ff6b6b 100%);
+            background-attachment: fixed;
             color: white;
             min-height: 100vh;
             padding: 15px;
@@ -22,24 +31,27 @@
             position: relative;
         }
         
-        /* Fixed Animated Background */
+        /* Fixed Animated Background - Simplified */
         .animated-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 1;
+            z-index: 0;
             overflow: hidden;
             pointer-events: none;
+            will-change: transform;
         }
         
         .bg-element {
             position: absolute;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.05);
-            animation: float 20s infinite linear;
-            z-index: 1;
+            background: rgba(255, 255, 255, 0.03);
+            animation: float 25s infinite linear;
+            will-change: transform;
+            backface-visibility: hidden;
+            transform: translateZ(0);
         }
         
         @keyframes float {
@@ -62,12 +74,38 @@
             margin: 0 auto; 
             background: rgba(255, 255, 255, 0.12);
             backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             border-radius: 25px;
             padding: 40px 30px;
             box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
             border: 1px solid rgba(255, 255, 255, 0.2);
             position: relative;
             z-index: 2;
+            transform: translateZ(0);
+        }
+        
+        .header-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .header-btn {
+            padding: 10px 20px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            transform: translateZ(0);
+        }
+        
+        .header-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px) translateZ(0);
         }
         
         h1 { 
@@ -110,12 +148,12 @@
             border: 1px solid rgba(255, 255, 255, 0.15);
             transition: all 0.4s ease;
             backdrop-filter: blur(10px);
-            z-index: 2;
-            position: relative;
+            -webkit-backdrop-filter: blur(10px);
+            transform: translateZ(0);
         }
         
         .feature:hover {
-            transform: translateY(-8px);
+            transform: translateY(-8px) translateZ(0);
             background: linear-gradient(135deg, rgba(255, 214, 255, 0.2), rgba(255, 158, 204, 0.15));
             box-shadow: 0 15px 40px rgba(255, 107, 157, 0.3);
         }
@@ -154,7 +192,9 @@
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(10px);
-            z-index: 2;
+            -webkit-backdrop-filter: blur(10px);
+            transform: translateZ(0);
+            -webkit-appearance: none;
         }
         
         button::before {
@@ -173,12 +213,12 @@
         }
         
         button:hover { 
-            transform: translateY(-4px) scale(1.05);
+            transform: translateY(-4px) scale(1.05) translateZ(0);
             box-shadow: 0 12px 30px rgba(0,0,0,0.3);
         }
         
         button:active {
-            transform: translateY(-1px) scale(1.02);
+            transform: translateY(-1px) scale(1.02) translateZ(0);
         }
         
         .platform-section { 
@@ -189,8 +229,8 @@
             border-radius: 22px;
             border: 1px solid rgba(255, 255, 255, 0.18);
             backdrop-filter: blur(15px);
-            position: relative;
-            z-index: 2;
+            -webkit-backdrop-filter: blur(15px);
+            transform: translateZ(0);
         }
         
         .testimonials {
@@ -208,12 +248,12 @@
             border: 1px solid rgba(255, 255, 255, 0.15);
             transition: transform 0.3s ease;
             backdrop-filter: blur(10px);
-            position: relative;
-            z-index: 2;
+            -webkit-backdrop-filter: blur(10px);
+            transform: translateZ(0);
         }
         
         .testimonial:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) translateZ(0);
             background: linear-gradient(135deg, rgba(255, 214, 255, 0.18), rgba(255, 158, 204, 0.12));
         }
         
@@ -297,9 +337,9 @@
         }
         
         @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 8px 25px rgba(255, 107, 157, 0.5); }
-            50% { transform: scale(1.05); box-shadow: 0 12px 35px rgba(255, 107, 157, 0.7); }
-            100% { transform: scale(1); box-shadow: 0 8px 25px rgba(255, 107, 157, 0.5); }
+            0% { transform: scale(1) translateZ(0); box-shadow: 0 8px 25px rgba(255, 107, 157, 0.5); }
+            50% { transform: scale(1.05) translateZ(0); box-shadow: 0 12px 35px rgba(255, 107, 157, 0.7); }
+            100% { transform: scale(1) translateZ(0); box-shadow: 0 8px 25px rgba(255, 107, 157, 0.5); }
         }
         
         .fade-in {
@@ -307,8 +347,8 @@
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(30px) translateZ(0); }
+            to { opacity: 1; transform: translateY(0) translateZ(0); }
         }
         
         .spinner {
@@ -324,8 +364,8 @@
         }
         
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% { transform: rotate(0deg) translateZ(0); }
+            100% { transform: rotate(360deg) translateZ(0); }
         }
         
         .heart-float {
@@ -333,8 +373,8 @@
         }
         
         @keyframes heartFloat {
-            0%, 100% { transform: translateY(0px) scale(1); }
-            50% { transform: translateY(-10px) scale(1.1); }
+            0%, 100% { transform: translateY(0px) scale(1) translateZ(0); }
+            50% { transform: translateY(-10px) scale(1.1) translateZ(0); }
         }
         
         .instructions {
@@ -344,8 +384,7 @@
             margin: 20px 0;
             text-align: left;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            position: relative;
-            z-index: 2;
+            transform: translateZ(0);
         }
         
         .instructions ol {
@@ -359,7 +398,7 @@
             color: rgba(255, 255, 255, 0.9);
         }
         
-        /* Fixed Floating Hearts */
+        /* Fixed Floating Hearts - Simplified */
         .floating-hearts {
             position: fixed;
             top: 0;
@@ -374,24 +413,26 @@
         .heart {
             position: absolute;
             font-size: 20px;
-            opacity: 0.3;
+            opacity: 0.2;
             animation: floatHeart linear infinite;
-            z-index: 1;
+            will-change: transform;
+            backface-visibility: hidden;
+            transform: translateZ(0);
         }
         
         @keyframes floatHeart {
             0% {
-                transform: translateY(100vh) rotate(0deg);
+                transform: translateY(100vh) rotate(0deg) translateZ(0);
                 opacity: 0;
             }
             10% {
-                opacity: 0.3;
+                opacity: 0.2;
             }
             90% {
-                opacity: 0.3;
+                opacity: 0.2;
             }
             100% {
-                transform: translateY(-100px) rotate(360deg);
+                transform: translateY(-100px) rotate(360deg) translateZ(0);
                 opacity: 0;
             }
         }
@@ -402,8 +443,7 @@
             padding: 20px;
             margin: 30px 0;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            position: relative;
-            z-index: 2;
+            transform: translateZ(0);
         }
         
         .activity-title {
@@ -442,11 +482,11 @@
         }
         
         @keyframes slideUp {
-            0% { transform: translateY(100%); }
-            5% { transform: translateY(0); }
-            20% { transform: translateY(0); }
-            25% { transform: translateY(-100%); }
-            100% { transform: translateY(-100%); }
+            0% { transform: translateY(100%) translateZ(0); }
+            5% { transform: translateY(0) translateZ(0); }
+            20% { transform: translateY(0) translateZ(0); }
+            25% { transform: translateY(-100%) translateZ(0); }
+            100% { transform: translateY(-100%) translateZ(0); }
         }
         
         .testimonial-slider {
@@ -457,7 +497,7 @@
             border-radius: 15px;
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            z-index: 2;
+            transform: translateZ(0);
         }
         
         .testimonial-slide {
@@ -497,8 +537,7 @@
             padding: 25px;
             margin: 30px 0;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            position: relative;
-            z-index: 2;
+            transform: translateZ(0);
         }
         
         .privacy-features {
@@ -513,7 +552,7 @@
             padding: 15px;
         }
         
-        /* Mobile responsiveness */
+        /* Mobile responsiveness with better compatibility */
         @media (max-width: 768px) {
             .container {
                 padding: 25px 20px;
@@ -563,6 +602,10 @@
                 margin-bottom: 15px;
             }
             
+            .header-buttons {
+                justify-content: center;
+            }
+            
             .about-content {
                 flex-direction: column;
                 text-align: center;
@@ -571,6 +614,11 @@
             .about-image {
                 width: 150px;
                 height: 150px;
+            }
+            
+            /* Reduce animations on mobile for better performance */
+            .bg-element, .heart {
+                animation-duration: 40s !important;
             }
         }
         
@@ -590,6 +638,36 @@
             .platform-section {
                 padding: 25px 15px;
             }
+            
+            /* Further reduce animations on very small screens */
+            .bg-element, .heart {
+                display: none;
+            }
+        }
+        
+        /* Fix for specific browser issues */
+        @supports not (backdrop-filter: blur(10px)) {
+            .container, .feature, .platform-section, .testimonial, button {
+                background: rgba(255, 255, 255, 0.2);
+            }
+        }
+        
+        /* Fix for iOS Safari */
+        @media (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) {
+            body {
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .container {
+                -webkit-transform: translate3d(0,0,0);
+            }
+        }
+        
+        /* Fix for Huawei and older Android devices */
+        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+            .bg-element, .heart {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -601,6 +679,11 @@
     <div class="floating-hearts" id="floatingHearts"></div>
     
     <div class="container fade-in">
+        <div class="header-buttons">
+            <button class="header-btn" onclick="downloadApp(this)">Sign In</button>
+            <button class="header-btn" onclick="downloadApp(this)">Sign Up</button>
+        </div>
+        
         <h1>💖 LovesWithoutBorders - MatchOptimizer</h1>
         <p class="subtitle">
             Connect Globally • Real International Matches • No Language Barriers
@@ -788,8 +871,9 @@
     </div>
 
     <script>
+    // Improved platform detection
     function detectPlatform() {
-        const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|webOS|Mobile|Tablet/i.test(navigator.userAgent);
         
         if (isMobile) {
             document.getElementById('mobile').style.display = 'block';
@@ -798,6 +882,7 @@
         }
     }
     
+    // Improved download function
     function downloadApp(button) {
         const btn = button;
         const originalText = btn.innerHTML;
@@ -824,34 +909,36 @@
         }, 1000);
     }
     
-    // Create floating hearts with reduced opacity to prevent blinking
+    // Create floating hearts with better performance
     function createFloatingHearts() {
         const container = document.getElementById('floatingHearts');
         const hearts = ['💖', '💕', '💗', '💓', '💘', '💝'];
         
-        for (let i = 0; i < 15; i++) { // Reduced number of hearts
+        // Reduce number of hearts for better performance
+        for (let i = 0; i < 12; i++) {
             const heart = document.createElement('div');
             heart.className = 'heart';
             heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
             heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = (Math.random() * 10 + 15) + 's'; // Slower animation
+            heart.style.animationDuration = (Math.random() * 10 + 20) + 's'; // Slower animation
             heart.style.animationDelay = Math.random() * 5 + 's';
             container.appendChild(heart);
         }
     }
     
-    // Create animated background with reduced elements
+    // Create animated background with better performance
     function createAnimatedBackground() {
         const container = document.getElementById('animatedBg');
         
-        for (let i = 0; i < 10; i++) { // Reduced number of elements
+        // Reduce number of elements for better performance
+        for (let i = 0; i < 8; i++) {
             const element = document.createElement('div');
             element.className = 'bg-element';
-            element.style.width = Math.random() * 80 + 30 + 'px'; // Smaller elements
+            element.style.width = Math.random() * 60 + 30 + 'px'; // Smaller elements
             element.style.height = element.style.width;
             element.style.left = Math.random() * 100 + 'vw';
             element.style.top = Math.random() * 100 + 'vh';
-            element.style.animationDuration = (Math.random() * 20 + 25) + 's'; // Slower animation
+            element.style.animationDuration = (Math.random() * 20 + 30) + 's'; // Slower animation
             element.style.animationDelay = Math.random() * 10 + 's';
             container.appendChild(element);
         }
@@ -892,12 +979,52 @@
         });
     }
     
+    // Performance optimization for animations
+    function optimizeAnimations() {
+        // Reduce animations on low-end devices
+        if (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) {
+            const elements = document.querySelectorAll('.bg-element, .heart');
+            elements.forEach(el => {
+                el.style.animationDuration = '60s';
+            });
+        }
+        
+        // Disable animations if prefers-reduced-motion is set
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            const animatedElements = document.querySelectorAll('*');
+            animatedElements.forEach(el => {
+                el.style.animation = 'none';
+            });
+        }
+    }
+    
     document.addEventListener('DOMContentLoaded', function() {
         detectPlatform();
         createFloatingHearts();
         createAnimatedBackground();
         initTestimonialSlider();
         animateStats();
+        optimizeAnimations();
+        
+        // Additional performance optimization
+        setTimeout(() => {
+            document.body.classList.add('loaded');
+        }, 100);
+    });
+    
+    // Handle page visibility changes to pause animations when not visible
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            // Pause animations when page is not visible
+            document.querySelectorAll('.bg-element, .heart').forEach(el => {
+                el.style.animationPlayState = 'paused';
+            });
+        } else {
+            // Resume animations when page becomes visible
+            document.querySelectorAll('.bg-element, .heart').forEach(el => {
+                el.style.animationPlayState = 'running';
+            });
+        }
     });
     </script>
 </body>
