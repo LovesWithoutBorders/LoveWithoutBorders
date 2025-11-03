@@ -28,6 +28,12 @@
             padding: 40px 30px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: containerFloat 6s ease-in-out infinite;
+        }
+        
+        @keyframes containerFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
         
         .header-buttons {
@@ -45,12 +51,19 @@
             color: white;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            animation: buttonPulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes buttonPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1); }
+            50% { transform: scale(1.05); box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2); }
         }
         
         .header-btn:hover {
             background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-2px);
+            transform: translateY(-3px) scale(1.05);
+            animation: none;
         }
         
         h1 { 
@@ -65,6 +78,12 @@
             letter-spacing: -0.3px;
             line-height: 1.2;
             padding: 0 10px;
+            animation: textGlow 4s ease-in-out infinite;
+        }
+        
+        @keyframes textGlow {
+            0%, 100% { text-shadow: 0 0 20px rgba(255, 214, 255, 0.3); }
+            50% { text-shadow: 0 0 30px rgba(255, 214, 255, 0.6), 0 0 40px rgba(255, 158, 204, 0.4); }
         }
         
         .subtitle {
@@ -75,6 +94,12 @@
             font-weight: 500;
             padding: 0 15px;
             line-height: 1.5;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .features { 
@@ -91,18 +116,38 @@
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.15);
             transition: all 0.4s ease;
+            animation: featureSlideIn 0.6s ease-out forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .feature:nth-child(1) { animation-delay: 0.1s; }
+        .feature:nth-child(2) { animation-delay: 0.2s; }
+        .feature:nth-child(3) { animation-delay: 0.3s; }
+        .feature:nth-child(4) { animation-delay: 0.4s; }
+        .feature:nth-child(5) { animation-delay: 0.5s; }
+        .feature:nth-child(6) { animation-delay: 0.6s; }
+        
+        @keyframes featureSlideIn {
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .feature:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px) scale(1.02);
             background: linear-gradient(135deg, rgba(255, 214, 255, 0.2), rgba(255, 158, 204, 0.15));
-            box-shadow: 0 10px 25px rgba(255, 107, 157, 0.2);
+            box-shadow: 0 15px 30px rgba(255, 107, 157, 0.3);
         }
         
         .feature-icon {
             font-size: 2.8em;
             margin-bottom: 15px;
             display: block;
+            animation: iconBounce 2s ease-in-out infinite;
+        }
+        
+        @keyframes iconBounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-5px) scale(1.1); }
         }
         
         .feature h3 {
@@ -128,24 +173,53 @@
             margin: 12px;
             font-weight: 600;
             letter-spacing: 0.5px;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+        }
+        
+        button:hover::before {
+            left: 100%;
         }
         
         button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
         
         .download-btn {
             background: linear-gradient(45deg, #ff6b9d, #ff6b6b, #ff8e6b);
             font-size: 1.15em;
             padding: 20px 45px;
-            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
+            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.4);
+            animation: downloadPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes downloadPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 5px 20px rgba(255, 107, 157, 0.4); }
+            50% { transform: scale(1.03); box-shadow: 0 8px 25px rgba(255, 107, 157, 0.6); }
         }
         
         .computer-btn {
             background: linear-gradient(45deg, #667eea, #764ba2, #9d4bff);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+            animation: computerGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes computerGlow {
+            0%, 100% { box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4); }
+            50% { box-shadow: 0 5px 25px rgba(102, 126, 234, 0.7), 0 0 15px rgba(157, 75, 255, 0.4); }
         }
         
         .stats {
@@ -164,6 +238,13 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            animation: statCount 2s ease-out forwards;
+            opacity: 0;
+        }
+        
+        @keyframes statCount {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .stats-label {
@@ -179,6 +260,7 @@
             margin-bottom: 20px;
             color: #ffd6ff;
             font-weight: 600;
+            text-shadow: 0 2px 10px rgba(255, 214, 255, 0.3);
         }
         
         .section-description {
@@ -218,6 +300,12 @@
             display: inline-block;
             margin-right: 10px;
             vertical-align: middle;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         
         .instructions {
@@ -227,11 +315,18 @@
             margin: 20px 0;
             text-align: left;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            animation: instructionsSlide 0.8s ease-out;
+        }
+        
+        @keyframes instructionsSlide {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
         }
         
         .instructions:hover {
             background: rgba(255, 255, 255, 0.15);
+            transform: translateX(10px);
         }
         
         .instructions ol {
@@ -243,6 +338,12 @@
         .instructions li {
             margin: 10px 0;
             color: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+        }
+        
+        .instructions li:hover {
+            color: #ffd6ff;
+            transform: translateX(5px);
         }
         
         .live-activity {
@@ -251,11 +352,18 @@
             padding: 20px;
             margin: 30px 0;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            animation: activityPulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes activityPulse {
+            0%, 100% { box-shadow: 0 0 0 rgba(255, 107, 107, 0); }
+            50% { box-shadow: 0 0 20px rgba(255, 107, 107, 0.3); }
         }
         
         .live-activity:hover {
             background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
         }
         
         .activity-title {
@@ -272,6 +380,12 @@
             background: #ff6b6b;
             border-radius: 50%;
             margin-right: 10px;
+            animation: dotPulse 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes dotPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.7; }
         }
         
         .activity-feed {
@@ -283,6 +397,19 @@
         .activity-item {
             padding: 10px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            animation: itemSlide 0.5s ease-out forwards;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        
+        .activity-item:nth-child(1) { animation-delay: 0.1s; }
+        .activity-item:nth-child(2) { animation-delay: 0.2s; }
+        .activity-item:nth-child(3) { animation-delay: 0.3s; }
+        .activity-item:nth-child(4) { animation-delay: 0.4s; }
+        .activity-item:nth-child(5) { animation-delay: 0.5s; }
+        
+        @keyframes itemSlide {
+            to { opacity: 1; transform: translateX(0); }
         }
         
         .testimonial-slider {
@@ -293,11 +420,12 @@
             border-radius: 15px;
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
         }
         
         .testimonial-slider:hover {
             background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
         }
         
         .testimonial-slide {
@@ -319,12 +447,19 @@
             object-fit: cover;
             margin-right: 20px;
             border: 3px solid rgba(255, 255, 255, 0.3);
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            animation: avatarRotate 8s linear infinite;
+        }
+        
+        @keyframes avatarRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
         
         .testimonial-avatar:hover {
-            transform: scale(1.05);
-            border-color: rgba(255, 255, 255, 0.5);
+            transform: scale(1.1) rotate(10deg);
+            border-color: rgba(255, 255, 255, 0.6);
+            animation: none;
         }
         
         .testimonial-content {
@@ -337,11 +472,18 @@
             padding: 25px;
             margin: 30px 0;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            animation: privacyFloat 5s ease-in-out infinite;
+        }
+        
+        @keyframes privacyFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
         
         .privacy-section:hover {
             background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-8px);
         }
         
         .privacy-features {
@@ -354,11 +496,11 @@
         .privacy-feature {
             text-align: center;
             padding: 15px;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
         }
         
         .privacy-feature:hover {
-            transform: translateY(-3px);
+            transform: translateY(-5px) scale(1.05);
         }
         
         .testimonials {
@@ -374,12 +516,19 @@
             border-radius: 18px;
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.15);
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            animation: testimonialFloat 6s ease-in-out infinite;
+        }
+        
+        @keyframes testimonialFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
         }
         
         .testimonial:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px) scale(1.02);
             background: linear-gradient(135deg, rgba(255, 214, 255, 0.18), rgba(255, 158, 204, 0.12));
+            animation: none;
         }
         
         .platform-section { 
@@ -389,11 +538,18 @@
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
             border-radius: 22px;
             border: 1px solid rgba(255, 255, 255, 0.18);
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            animation: platformGlow 4s ease-in-out infinite;
+        }
+        
+        @keyframes platformGlow {
+            0%, 100% { box-shadow: 0 0 0 rgba(255, 255, 255, 0); }
+            50% { box-shadow: 0 0 30px rgba(255, 255, 255, 0.1); }
         }
         
         .platform-section:hover {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+            transform: translateY(-8px);
         }
         
         /* Download Modal */
@@ -408,6 +564,12 @@
             z-index: 1000;
             justify-content: center;
             align-items: center;
+            animation: modalFadeIn 0.3s ease-out;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
         .modal-content {
@@ -417,14 +579,26 @@
             max-width: 500px;
             width: 90%;
             text-align: center;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: modalSlideIn 0.4s ease-out;
+        }
+        
+        @keyframes modalSlideIn {
+            from { transform: scale(0.8) translateY(-50px); opacity: 0; }
+            to { transform: scale(1) translateY(0); opacity: 1; }
         }
         
         .modal-title {
             font-size: 1.5em;
             margin-bottom: 20px;
             color: #ffd6ff;
+            animation: titlePulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes titlePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
         
         .modal-buttons {
@@ -446,6 +620,12 @@
         .modal-confirm {
             background: linear-gradient(45deg, #ff6b9d, #ff6b6b);
             color: white;
+            animation: confirmPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes confirmPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 4px 15px rgba(255, 107, 157, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 6px 20px rgba(255, 107, 157, 0.6); }
         }
         
         .modal-cancel {
@@ -454,7 +634,8 @@
         }
         
         .modal-btn:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            animation: none;
         }
         
         /* Mobile responsiveness */
@@ -462,11 +643,13 @@
             .container {
                 padding: 25px 20px;
                 border-radius: 20px;
+                animation: none;
             }
             
             .platform-section {
                 padding: 30px 20px;
                 margin: 30px 0;
+                animation: none;
             }
             
             .features {
@@ -476,6 +659,9 @@
             
             .feature {
                 padding: 25px 15px;
+                animation: none;
+                opacity: 1;
+                transform: none;
             }
             
             button {
@@ -491,6 +677,7 @@
             
             .instructions {
                 padding: 20px 15px;
+                animation: none;
             }
             
             .testimonial-slider {
@@ -505,6 +692,7 @@
             .testimonial-avatar {
                 margin-right: 0;
                 margin-bottom: 15px;
+                animation: none;
             }
             
             .header-buttons {
@@ -513,6 +701,11 @@
             
             .modal-buttons {
                 flex-direction: column;
+            }
+            
+            /* Reduce animations on mobile for performance */
+            .feature-icon, .download-btn, .computer-btn {
+                animation: none;
             }
         }
         
@@ -523,6 +716,7 @@
             
             h1 {
                 font-size: 1.8em;
+                animation: none;
             }
             
             .subtitle {
@@ -541,11 +735,11 @@
         <div class="modal-content">
             <h3 class="modal-title">📱 Important Download Information</h3>
             <p>You're about to download the MatchOptimizer application file.</p>
-            <p><strong>Please note:</strong> This is a computer application (.exe file). You'll need to:</p>
+            <p><strong>Please note:</strong> This is a computer application (.bat file). You'll need to:</p>
             <ol style="text-align: left; margin: 15px 0; padding-left: 20px;">
                 <li>Transfer the file to your computer</li>
                 <li>Extract the ZIP file</li>
-                <li>Run "MatchOptimizer.exe" as Administrator</li>
+                <li>Run "MatchOptimizer.bat" as Administrator</li>
                 <li>Create your account in the application</li>
             </ol>
             <p>You cannot sign up or use the app directly on your phone.</p>
@@ -661,7 +855,7 @@
                 <ol>
                     <li><strong>Download</strong> the MatchOptimizer app above</li>
                     <li><strong>Transfer it</strong> to your computer</li>
-                    <li><strong>Extract the ZIP file</strong> and run "MatchOptimizer.exe" as Administrator</li>
+                    <li><strong>Extract the ZIP file</strong> and run "MatchOptimizer.bat" as Administrator</li>
                     <li><strong>Start connecting</strong> globally!</li>
                 </ol>
             </div>
@@ -682,7 +876,7 @@
                 <ol>
                     <li><strong>Download</strong> the MatchOptimizer app above</li>
                     <li><strong>Extract</strong> the ZIP file</li>
-                    <li><strong>Run "MatchOptimizer.exe"</strong> As Administrator</li>
+                    <li><strong>Run "MatchOptimizer.bat"</strong> As Administrator</li>
                     <li><strong>Start connecting</strong> globally!</li>
                 </ol>
             </div>
@@ -798,27 +992,30 @@
         }, 1000);
     }
     
-    // Simple static content display - no animations
-    function displayStaticContent() {
-        // Show all activity items statically
-        const activityItems = document.querySelectorAll('.activity-item');
-        activityItems.forEach((item, index) => {
-            item.style.display = 'block';
+    // Animate elements on load
+    function animateOnLoad() {
+        // Animate stats
+        const stats = document.querySelectorAll('.stat');
+        stats.forEach((stat, index) => {
+            setTimeout(() => {
+                stat.style.animation = 'statCount 1s ease-out forwards';
+            }, index * 200);
         });
         
-        // Show first testimonial slide only
-        const slides = document.querySelectorAll('.testimonial-slide');
-        if (slides.length > 0) {
-            slides[0].style.opacity = '1';
-            slides[0].style.position = 'relative';
-        }
+        // Animate activity items
+        const activityItems = document.querySelectorAll('.activity-item');
+        activityItems.forEach((item, index) => {
+            setTimeout(() => {
+                item.style.animation = 'itemSlide 0.5s ease-out forwards';
+            }, index * 100);
+        });
     }
     
     document.addEventListener('DOMContentLoaded', function() {
         detectPlatform();
-        displayStaticContent();
+        animateOnLoad();
         
-        // Set stats immediately - no animation
+        // Set stats immediately
         const stats = document.querySelectorAll('.stat');
         const targetValues = ['7,243+', '94%', '8min'];
         
