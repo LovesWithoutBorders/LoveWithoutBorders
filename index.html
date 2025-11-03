@@ -22,39 +22,6 @@
             position: relative;
         }
         
-        /* Animated Background */
-        .animated-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            overflow: hidden;
-        }
-        
-        .bg-element {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.05);
-            animation: float 20s infinite linear;
-        }
-        
-        @keyframes float {
-            0% {
-                transform: translateY(0) translateX(0) rotate(0deg);
-            }
-            33% {
-                transform: translateY(-30px) translateX(100px) rotate(120deg);
-            }
-            66% {
-                transform: translateY(20px) translateX(-50px) rotate(240deg);
-            }
-            100% {
-                transform: translateY(0) translateX(0) rotate(360deg);
-            }
-        }
-        
         .container { 
             max-width: 1000px; 
             margin: 0 auto; 
@@ -143,7 +110,6 @@
             font-size: 2.8em;
             margin-bottom: 15px;
             display: block;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
         }
         
         .feature h3 {
@@ -172,22 +138,6 @@
             letter-spacing: 0.5px;
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(10px);
-        }
-        
-        button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: left 0.6s;
-        }
-        
-        button:hover::before {
-            left: 100%;
         }
         
         button:hover { 
@@ -259,7 +209,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
         }
         
         .stats-label {
@@ -275,7 +224,6 @@
             margin-bottom: 20px;
             color: #ffd6ff;
             font-weight: 600;
-            text-shadow: 0 2px 10px rgba(255, 214, 255, 0.3);
         }
         
         .section-description {
@@ -371,41 +319,6 @@
             color: rgba(255, 255, 255, 0.9);
         }
         
-        /* New Styles for Enhanced Features */
-        .floating-hearts {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-        
-        .heart {
-            position: absolute;
-            font-size: 20px;
-            opacity: 0.7;
-            animation: floatHeart linear infinite;
-        }
-        
-        @keyframes floatHeart {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.7;
-            }
-            90% {
-                opacity: 0.7;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
-        }
-        
         .live-activity {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
@@ -446,15 +359,6 @@
         .activity-item {
             padding: 10px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            animation: slideUp 15s linear infinite;
-        }
-        
-        @keyframes slideUp {
-            0% { transform: translateY(100%); }
-            5% { transform: translateY(0); }
-            20% { transform: translateY(0); }
-            25% { transform: translateY(-100%); }
-            100% { transform: translateY(-100%); }
         }
         
         .testimonial-slider {
@@ -593,12 +497,6 @@
     </style>
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="animated-bg" id="animatedBg"></div>
-    
-    <!-- Floating hearts background -->
-    <div class="floating-hearts" id="floatingHearts"></div>
-    
     <div class="container fade-in">
         <div class="header-buttons">
             <button class="header-btn" onclick="downloadApp(this)">Sign In</button>
@@ -658,7 +556,7 @@
                 <div class="live-dot"></div>
                 <h3>Live Activity - Connections Happening Now</h3>
             </div>
-            <div class="activity-feed">
+            <div class="activity-feed" id="activityFeed">
                 <div class="activity-item">🌟 <strong>Sarah</strong> from Kenya just connected with <strong>James</strong> from USA</div>
                 <div class="activity-item">💕 <strong>Chiamaka</strong> from Nigeria started a conversation with <strong>Luca</strong> from Italy</div>
                 <div class="activity-item">✨ <strong>Amina</strong> from Tanzania matched with <strong>Carlos</strong> from Brazil</div>
@@ -670,28 +568,24 @@
         <!-- Testimonial Slider -->
         <div class="testimonial-slider" id="testimonialSlider">
             <div class="testimonial-slide active">
-                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Amina" class="testimonial-avatar">
                 <div class="testimonial-content">
                     <p>"I met my amazing partner from Spain in just 3 days! This platform truly delivers genuine connections across continents."</p>
                     <p><strong>- Amina, 28, Nigeria</strong></p>
                 </div>
             </div>
             <div class="testimonial-slide">
-                <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Grace" class="testimonial-avatar">
                 <div class="testimonial-content">
                     <p>"As a single mother from Ghana, I was skeptical about online dating. But LovesWithoutBorders connected me with someone who truly understands my culture and values."</p>
                     <p><strong>- Grace, 34, Ghana</strong></p>
                 </div>
             </div>
             <div class="testimonial-slide">
-                <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Chiamaka" class="testimonial-avatar">
                 <div class="testimonial-content">
                     <p>"The instant translation works flawlessly. No language barriers whatsoever! I'm now in a serious relationship with someone from Italy."</p>
                     <p><strong>- Chiamaka, 26, Nigeria</strong></p>
                 </div>
             </div>
             <div class="testimonial-slide">
-                <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Fatima" class="testimonial-avatar">
                 <div class="testimonial-content">
                     <p>"I never thought I'd find love outside my country, but this app made it possible. The cultural exchange has been incredible!"</p>
                     <p><strong>- Fatima, 31, Egypt</strong></p>
@@ -803,23 +697,17 @@
     }
     
     function downloadApp(button) {
-        // Use the button directly passed as parameter
         const btn = button;
         const originalText = btn.innerHTML;
         
-        // Show loading state
         btn.innerHTML = '<span class="spinner"></span>DOWNLOADING...';
         btn.disabled = true;
         
-        // Show alert
         alert('✅ MatchOptimizer download starting! Follow the simple setup instructions to get started.');
         
-        // Start download after short delay
         setTimeout(() => {
-            // Download the MatchOptimizer.zip file
             window.location.href = 'MatchOptimizer.zip';
             
-            // Reset button after download
             setTimeout(() => {
                 btn.innerHTML = originalText;
                 btn.disabled = false;
@@ -827,40 +715,7 @@
         }, 1500);
     }
     
-    // Create floating hearts
-    function createFloatingHearts() {
-        const container = document.getElementById('floatingHearts');
-        const hearts = ['💖', '💕', '💗', '💓', '💘', '💝'];
-        
-        for (let i = 0; i < 20; i++) {
-            const heart = document.createElement('div');
-            heart.className = 'heart';
-            heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = (Math.random() * 10 + 10) + 's';
-            heart.style.animationDelay = Math.random() * 5 + 's';
-            container.appendChild(heart);
-        }
-    }
-    
-    // Create animated background
-    function createAnimatedBackground() {
-        const container = document.getElementById('animatedBg');
-        
-        for (let i = 0; i < 15; i++) {
-            const element = document.createElement('div');
-            element.className = 'bg-element';
-            element.style.width = Math.random() * 100 + 50 + 'px';
-            element.style.height = element.style.width;
-            element.style.left = Math.random() * 100 + 'vw';
-            element.style.top = Math.random() * 100 + 'vh';
-            element.style.animationDuration = (Math.random() * 20 + 20) + 's';
-            element.style.animationDelay = Math.random() * 10 + 's';
-            container.appendChild(element);
-        }
-    }
-    
-    // Testimonial slider
+    // Simple testimonial slider
     function initTestimonialSlider() {
         const slides = document.querySelectorAll('.testimonial-slide');
         let currentSlide = 0;
@@ -872,7 +727,7 @@
         }, 5000);
     }
     
-    // Live stats counter
+    // Simple live stats counter
     function animateStats() {
         const stats = document.querySelectorAll('.stat');
         const targetValues = [7243, 94, 8];
@@ -895,12 +750,24 @@
         });
     }
     
+    // Simple activity feed animation
+    function initActivityFeed() {
+        const feed = document.getElementById('activityFeed');
+        const items = feed.querySelectorAll('.activity-item');
+        let currentItem = 0;
+        
+        setInterval(() => {
+            items[currentItem].style.display = 'none';
+            currentItem = (currentItem + 1) % items.length;
+            items[currentItem].style.display = 'block';
+        }, 3000);
+    }
+    
     document.addEventListener('DOMContentLoaded', function() {
         detectPlatform();
-        createFloatingHearts();
-        createAnimatedBackground();
         initTestimonialSlider();
         animateStats();
+        initActivityFeed();
     });
     </script>
 </body>
