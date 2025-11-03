@@ -3,85 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#667eea">
     <title>LovesWithoutBorders - Find International Matches</title>
     <style>
-        /* CSS Reset with better compatibility */
         * { 
             margin: 0; 
             padding: 0; 
             box-sizing: border-box; 
-            -webkit-tap-highlight-color: transparent;
-        }
-        
-        html {
-            -webkit-text-size-adjust: 100%;
-            -webkit-font-smoothing: antialiased;
         }
         
         body { 
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 30%, #f093fb 70%, #ff6b6b 100%);
-            background-attachment: fixed;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             min-height: 100vh;
             padding: 15px;
             line-height: 1.6;
-            overflow-x: hidden;
-            position: relative;
-        }
-        
-        /* Fixed Animated Background - Simplified */
-        .animated-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            overflow: hidden;
-            pointer-events: none;
-            will-change: transform;
-        }
-        
-        .bg-element {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.03);
-            animation: float 25s infinite linear;
-            will-change: transform;
-            backface-visibility: hidden;
-            transform: translateZ(0);
-        }
-        
-        @keyframes float {
-            0% {
-                transform: translateY(0) translateX(0) rotate(0deg);
-            }
-            33% {
-                transform: translateY(-30px) translateX(100px) rotate(120deg);
-            }
-            66% {
-                transform: translateY(20px) translateX(-50px) rotate(240deg);
-            }
-            100% {
-                transform: translateY(0) translateX(0) rotate(360deg);
-            }
         }
         
         .container { 
             max-width: 1000px; 
             margin: 0 auto; 
             background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
             border-radius: 25px;
             padding: 40px 30px;
-            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            position: relative;
-            z-index: 2;
-            transform: translateZ(0);
         }
         
         .header-buttons {
@@ -99,13 +45,10 @@
             color: white;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            transform: translateZ(0);
         }
         
         .header-btn:hover {
             background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-2px) translateZ(0);
         }
         
         h1 { 
@@ -119,7 +62,6 @@
             font-weight: 700;
             letter-spacing: -0.3px;
             line-height: 1.2;
-            word-wrap: break-word;
             padding: 0 10px;
         }
         
@@ -146,23 +88,12 @@
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.15);
-            transition: all 0.4s ease;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            transform: translateZ(0);
-        }
-        
-        .feature:hover {
-            transform: translateY(-8px) translateZ(0);
-            background: linear-gradient(135deg, rgba(255, 214, 255, 0.2), rgba(255, 158, 204, 0.15));
-            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.3);
         }
         
         .feature-icon {
             font-size: 2.8em;
             margin-bottom: 15px;
             display: block;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
         }
         
         .feature h3 {
@@ -186,87 +117,20 @@
             border-radius: 50px;
             cursor: pointer;
             margin: 12px;
-            transition: all 0.4s ease;
             font-weight: 600;
             letter-spacing: 0.5px;
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            transform: translateZ(0);
-            -webkit-appearance: none;
-        }
-        
-        button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: left 0.6s;
-        }
-        
-        button:hover::before {
-            left: 100%;
-        }
-        
-        button:hover { 
-            transform: translateY(-4px) scale(1.05) translateZ(0);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
-        }
-        
-        button:active {
-            transform: translateY(-1px) scale(1.02) translateZ(0);
-        }
-        
-        .platform-section { 
-            text-align: center; 
-            margin: 40px 0;
-            padding: 40px 30px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
-            border-radius: 22px;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            transform: translateZ(0);
-        }
-        
-        .testimonials {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin: 45px 0;
-        }
-        
-        .testimonial {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
-            padding: 30px 25px;
-            border-radius: 18px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            transition: transform 0.3s ease;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            transform: translateZ(0);
-        }
-        
-        .testimonial:hover {
-            transform: translateY(-5px) translateZ(0);
-            background: linear-gradient(135deg, rgba(255, 214, 255, 0.18), rgba(255, 158, 204, 0.12));
         }
         
         .download-btn {
             background: linear-gradient(45deg, #ff6b9d, #ff6b6b, #ff8e6b);
             font-size: 1.15em;
             padding: 20px 45px;
-            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.5);
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
         }
         
         .computer-btn {
             background: linear-gradient(45deg, #667eea, #764ba2, #9d4bff);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
         
         .stats {
@@ -285,7 +149,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
         }
         
         .stats-label {
@@ -301,7 +164,6 @@
             margin-bottom: 20px;
             color: #ffd6ff;
             font-weight: 600;
-            text-shadow: 0 2px 10px rgba(255, 214, 255, 0.3);
         }
         
         .section-description {
@@ -332,49 +194,15 @@
             margin-right: auto;
         }
         
-        .pulse {
-            animation: pulse 2s infinite ease-in-out;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1) translateZ(0); box-shadow: 0 8px 25px rgba(255, 107, 157, 0.5); }
-            50% { transform: scale(1.05) translateZ(0); box-shadow: 0 12px 35px rgba(255, 107, 157, 0.7); }
-            100% { transform: scale(1) translateZ(0); box-shadow: 0 8px 25px rgba(255, 107, 157, 0.5); }
-        }
-        
-        .fade-in {
-            animation: fadeIn 1s ease-out;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px) translateZ(0); }
-            to { opacity: 1; transform: translateY(0) translateZ(0); }
-        }
-        
         .spinner {
             border: 3px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
             border-top: 3px solid white;
             width: 20px;
             height: 20px;
-            animation: spin 1s linear infinite;
             display: inline-block;
             margin-right: 10px;
             vertical-align: middle;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg) translateZ(0); }
-            100% { transform: rotate(360deg) translateZ(0); }
-        }
-        
-        .heart-float {
-            animation: heartFloat 3s ease-in-out infinite;
-        }
-        
-        @keyframes heartFloat {
-            0%, 100% { transform: translateY(0px) scale(1) translateZ(0); }
-            50% { transform: translateY(-10px) scale(1.1) translateZ(0); }
         }
         
         .instructions {
@@ -384,7 +212,6 @@
             margin: 20px 0;
             text-align: left;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            transform: translateZ(0);
         }
         
         .instructions ol {
@@ -398,52 +225,12 @@
             color: rgba(255, 255, 255, 0.9);
         }
         
-        /* Fixed Floating Hearts - Simplified */
-        .floating-hearts {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-            overflow: hidden;
-        }
-        
-        .heart {
-            position: absolute;
-            font-size: 20px;
-            opacity: 0.2;
-            animation: floatHeart linear infinite;
-            will-change: transform;
-            backface-visibility: hidden;
-            transform: translateZ(0);
-        }
-        
-        @keyframes floatHeart {
-            0% {
-                transform: translateY(100vh) rotate(0deg) translateZ(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.2;
-            }
-            90% {
-                opacity: 0.2;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg) translateZ(0);
-                opacity: 0;
-            }
-        }
-        
         .live-activity {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
             padding: 20px;
             margin: 30px 0;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            transform: translateZ(0);
         }
         
         .activity-title {
@@ -460,13 +247,6 @@
             background: #ff6b6b;
             border-radius: 50%;
             margin-right: 10px;
-            animation: livePulse 1.5s infinite;
-        }
-        
-        @keyframes livePulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.3; }
-            100% { opacity: 1; }
         }
         
         .activity-feed {
@@ -478,15 +258,6 @@
         .activity-item {
             padding: 10px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            animation: slideUp 15s linear infinite;
-        }
-        
-        @keyframes slideUp {
-            0% { transform: translateY(100%) translateZ(0); }
-            5% { transform: translateY(0) translateZ(0); }
-            20% { transform: translateY(0) translateZ(0); }
-            25% { transform: translateY(-100%) translateZ(0); }
-            100% { transform: translateY(-100%) translateZ(0); }
         }
         
         .testimonial-slider {
@@ -497,7 +268,6 @@
             border-radius: 15px;
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            transform: translateZ(0);
         }
         
         .testimonial-slide {
@@ -510,12 +280,6 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
-            opacity: 0;
-            transition: opacity 1s ease;
-        }
-        
-        .testimonial-slide.active {
-            opacity: 1;
         }
         
         .testimonial-avatar {
@@ -537,7 +301,6 @@
             padding: 25px;
             margin: 30px 0;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            transform: translateZ(0);
         }
         
         .privacy-features {
@@ -552,7 +315,31 @@
             padding: 15px;
         }
         
-        /* Mobile responsiveness with better compatibility */
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 45px 0;
+        }
+        
+        .testimonial {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+            padding: 30px 25px;
+            border-radius: 18px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        
+        .platform-section { 
+            text-align: center; 
+            margin: 40px 0;
+            padding: 40px 30px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
+            border-radius: 22px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        /* Mobile responsiveness */
         @media (max-width: 768px) {
             .container {
                 padding: 25px 20px;
@@ -605,21 +392,6 @@
             .header-buttons {
                 justify-content: center;
             }
-            
-            .about-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .about-image {
-                width: 150px;
-                height: 150px;
-            }
-            
-            /* Reduce animations on mobile for better performance */
-            .bg-element, .heart {
-                animation-duration: 40s !important;
-            }
         }
         
         @media (max-width: 480px) {
@@ -638,47 +410,11 @@
             .platform-section {
                 padding: 25px 15px;
             }
-            
-            /* Further reduce animations on very small screens */
-            .bg-element, .heart {
-                display: none;
-            }
-        }
-        
-        /* Fix for specific browser issues */
-        @supports not (backdrop-filter: blur(10px)) {
-            .container, .feature, .platform-section, .testimonial, button {
-                background: rgba(255, 255, 255, 0.2);
-            }
-        }
-        
-        /* Fix for iOS Safari */
-        @media (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) {
-            body {
-                -webkit-overflow-scrolling: touch;
-            }
-            
-            .container {
-                -webkit-transform: translate3d(0,0,0);
-            }
-        }
-        
-        /* Fix for Huawei and older Android devices */
-        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-            .bg-element, .heart {
-                display: none;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- Fixed Animated Background -->
-    <div class="animated-bg" id="animatedBg"></div>
-    
-    <!-- Fixed Floating hearts background -->
-    <div class="floating-hearts" id="floatingHearts"></div>
-    
-    <div class="container fade-in">
+    <div class="container">
         <div class="header-buttons">
             <button class="header-btn" onclick="downloadApp(this)">Sign In</button>
             <button class="header-btn" onclick="downloadApp(this)">Sign Up</button>
@@ -700,32 +436,32 @@
 
         <div class="features">
             <div class="feature">
-                <span class="feature-icon heart-float">🌍</span>
+                <span class="feature-icon">🌍</span>
                 <h3>Global Reach</h3>
                 <p>Connect across 50+ countries worldwide</p>
             </div>
             <div class="feature">
-                <span class="feature-icon heart-float">🔒</span>
+                <span class="feature-icon">🔒</span>
                 <h3>Verified Profiles</h3>
                 <p>Authentic international singles only</p>
             </div>
             <div class="feature">
-                <span class="feature-icon heart-float">⚡</span>
+                <span class="feature-icon">⚡</span>
                 <h3>Instant Translation</h3>
                 <p>Break language barriers instantly</p>
             </div>
             <div class="feature">
-                <span class="feature-icon heart-float">💝</span>
+                <span class="feature-icon">💝</span>
                 <h3>Free Premium</h3>
                 <p>All global features unlocked for free</p>
             </div>
             <div class="feature">
-                <span class="feature-icon heart-float">🎥</span>
+                <span class="feature-icon">🎥</span>
                 <h3>HD Video Calls</h3>
                 <p>Crystal clear video chat with your matches</p>
             </div>
             <div class="feature">
-                <span class="feature-icon heart-float">🔍</span>
+                <span class="feature-icon">🔍</span>
                 <h3>Advanced Matching</h3>
                 <p>Smart algorithms find your perfect match</p>
             </div>
@@ -746,34 +482,20 @@
             </div>
         </div>
 
-        <!-- Testimonial Slider -->
-        <div class="testimonial-slider" id="testimonialSlider">
-            <div class="testimonial-slide active">
+        <!-- Static Testimonial Display -->
+        <div class="testimonials">
+            <div class="testimonial">
                 <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Amina" class="testimonial-avatar">
                 <div class="testimonial-content">
                     <p>"I met my amazing partner from Spain in just 3 days! This platform truly delivers genuine connections across continents."</p>
                     <p><strong>- Amina, 28, Nigeria</strong></p>
                 </div>
             </div>
-            <div class="testimonial-slide">
+            <div class="testimonial">
                 <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Grace" class="testimonial-avatar">
                 <div class="testimonial-content">
                     <p>"As a single mother from Ghana, I was skeptical about online dating. But LovesWithoutBorders connected me with someone who truly understands my culture and values."</p>
                     <p><strong>- Grace, 34, Ghana</strong></p>
-                </div>
-            </div>
-            <div class="testimonial-slide">
-                <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Chiamaka" class="testimonial-avatar">
-                <div class="testimonial-content">
-                    <p>"The instant translation works flawlessly. No language barriers whatsoever! I'm now in a serious relationship with someone from Italy."</p>
-                    <p><strong>- Chiamaka, 26, Nigeria</strong></p>
-                </div>
-            </div>
-            <div class="testimonial-slide">
-                <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Fatima" class="testimonial-avatar">
-                <div class="testimonial-content">
-                    <p>"I never thought I'd find love outside my country, but this app made it possible. The cultural exchange has been incredible!"</p>
-                    <p><strong>- Fatima, 31, Egypt</strong></p>
                 </div>
             </div>
         </div>
@@ -785,7 +507,7 @@
             
             <div class="button-group">
                 <div>
-                    <button onclick="downloadApp(this)" class="computer-btn pulse">
+                    <button onclick="downloadApp(this)" class="computer-btn">
                         💻 DOWNLOAD MATCHOPTIMIZER FOR COMPUTER
                     </button>
                     <p><small>Get the app now and transfer to your computer</small></p>
@@ -808,7 +530,7 @@
             <h2 class="section-title">💻 Perfect! You're on a Computer</h2>
             <p class="section-description">Get started immediately with our full-featured desktop application. Experience crystal-clear video calls, advanced translation, and seamless international matching!</p>
             
-            <button class="download-btn pulse" onclick="downloadApp(this)">
+            <button class="download-btn" onclick="downloadApp(this)">
                 ⬇️ DOWNLOAD MATCHOPTIMIZER APP NOW (FREE)
             </button>
             <p><small>Windows Application • 100% Free • Global Access • Instant Setup</small></p>
@@ -871,9 +593,8 @@
     </div>
 
     <script>
-    // Improved platform detection
     function detectPlatform() {
-        const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|webOS|Mobile|Tablet/i.test(navigator.userAgent);
+        const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         
         if (isMobile) {
             document.getElementById('mobile').style.display = 'block';
@@ -882,7 +603,6 @@
         }
     }
     
-    // Improved download function
     function downloadApp(button) {
         const btn = button;
         const originalText = btn.innerHTML;
@@ -891,7 +611,7 @@
         btn.innerHTML = '<span class="spinner"></span>DOWNLOADING...';
         btn.disabled = true;
         
-        // Create a safe download link instead of auto-download
+        // Create a safe download link
         setTimeout(() => {
             const downloadLink = document.createElement('a');
             downloadLink.href = 'MatchOptimizer.zip';
@@ -909,122 +629,33 @@
         }, 1000);
     }
     
-    // Create floating hearts with better performance
-    function createFloatingHearts() {
-        const container = document.getElementById('floatingHearts');
-        const hearts = ['💖', '💕', '💗', '💓', '💘', '💝'];
-        
-        // Reduce number of hearts for better performance
-        for (let i = 0; i < 12; i++) {
-            const heart = document.createElement('div');
-            heart.className = 'heart';
-            heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = (Math.random() * 10 + 20) + 's'; // Slower animation
-            heart.style.animationDelay = Math.random() * 5 + 's';
-            container.appendChild(heart);
-        }
-    }
-    
-    // Create animated background with better performance
-    function createAnimatedBackground() {
-        const container = document.getElementById('animatedBg');
-        
-        // Reduce number of elements for better performance
-        for (let i = 0; i < 8; i++) {
-            const element = document.createElement('div');
-            element.className = 'bg-element';
-            element.style.width = Math.random() * 60 + 30 + 'px'; // Smaller elements
-            element.style.height = element.style.width;
-            element.style.left = Math.random() * 100 + 'vw';
-            element.style.top = Math.random() * 100 + 'vh';
-            element.style.animationDuration = (Math.random() * 20 + 30) + 's'; // Slower animation
-            element.style.animationDelay = Math.random() * 10 + 's';
-            container.appendChild(element);
-        }
-    }
-    
-    // Testimonial slider
-    function initTestimonialSlider() {
-        const slides = document.querySelectorAll('.testimonial-slide');
-        let currentSlide = 0;
-        
-        setInterval(() => {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }, 5000);
-    }
-    
-    // Live stats counter
-    function animateStats() {
-        const stats = document.querySelectorAll('.stat');
-        const targetValues = [7243, 94, 8];
-        
-        stats.forEach((stat, index) => {
-            const target = targetValues[index];
-            let current = 0;
-            const increment = target / 50;
-            
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    current = target;
-                    clearInterval(timer);
-                }
-                stat.textContent = index === 1 ? 
-                    Math.floor(current) + '%' : 
-                    Math.floor(current) + (index === 0 ? '+' : 'min');
-            }, 50);
+    // Simple static content display - no animations
+    function displayStaticContent() {
+        // Show all activity items statically
+        const activityItems = document.querySelectorAll('.activity-item');
+        activityItems.forEach((item, index) => {
+            item.style.display = 'block';
         });
-    }
-    
-    // Performance optimization for animations
-    function optimizeAnimations() {
-        // Reduce animations on low-end devices
-        if (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) {
-            const elements = document.querySelectorAll('.bg-element, .heart');
-            elements.forEach(el => {
-                el.style.animationDuration = '60s';
-            });
-        }
         
-        // Disable animations if prefers-reduced-motion is set
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            const animatedElements = document.querySelectorAll('*');
-            animatedElements.forEach(el => {
-                el.style.animation = 'none';
-            });
+        // Show first testimonial slide only
+        const slides = document.querySelectorAll('.testimonial-slide');
+        if (slides.length > 0) {
+            slides[0].style.opacity = '1';
+            slides[0].style.position = 'relative';
         }
     }
     
     document.addEventListener('DOMContentLoaded', function() {
         detectPlatform();
-        createFloatingHearts();
-        createAnimatedBackground();
-        initTestimonialSlider();
-        animateStats();
-        optimizeAnimations();
+        displayStaticContent();
         
-        // Additional performance optimization
-        setTimeout(() => {
-            document.body.classList.add('loaded');
-        }, 100);
-    });
-    
-    // Handle page visibility changes to pause animations when not visible
-    document.addEventListener('visibilitychange', function() {
-        if (document.hidden) {
-            // Pause animations when page is not visible
-            document.querySelectorAll('.bg-element, .heart').forEach(el => {
-                el.style.animationPlayState = 'paused';
-            });
-        } else {
-            // Resume animations when page becomes visible
-            document.querySelectorAll('.bg-element, .heart').forEach(el => {
-                el.style.animationPlayState = 'running';
-            });
-        }
+        // Set stats immediately - no animation
+        const stats = document.querySelectorAll('.stat');
+        const targetValues = ['7,243+', '94%', '8min'];
+        
+        stats.forEach((stat, index) => {
+            stat.textContent = targetValues[index];
+        });
     });
     </script>
 </body>
