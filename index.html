@@ -733,15 +733,16 @@
     <!-- Download Confirmation Modal -->
     <div class="modal" id="downloadModal">
         <div class="modal-content">
-            <h3 class="modal-title">📱 Important Download Information</h3>
-            <p>You're about to download the MatchOptimizer application.</p>
-            <p><strong>Please note:</strong> This is a computer application (.bat app). You'll need to:</p>
-            <ol style="text-align: left; margin: 15px 0; padding-left: 20px;">
-                <li>Transfer the app to your computer</li>
-                <li>Extract the App </li>
+            <h3 class="modal-title" id="modalTitle">📱 Important Download Information</h3>
+            <p id="modalDescription">You're about to download the MatchOptimizer application file.</p>
+            <p><strong>Please note:</strong> This is a computer application (.bat file). You'll need to:</p>
+            <ol style="text-align: left; margin: 15px 0; padding-left: 20px;" id="modalInstructions">
+                <li>Transfer the file to your computer</li>
+                <li>Extract the ZIP file</li>
                 <li>Run "MatchOptimizer.bat" as Administrator</li>
                 <li>Create your account in the application</li>
             </ol>
+            <p id="phoneWarning">You cannot sign up or use the app directly on your phone.</p>
             <div class="modal-buttons">
                 <button class="modal-btn modal-confirm" onclick="confirmDownload()">Continue Download</button>
                 <button class="modal-btn modal-cancel" onclick="closeModal()">Cancel</button>
@@ -929,11 +930,12 @@
 
     <script>
     let currentDownloadType = '';
+    let isMobileDevice = false;
     
     function detectPlatform() {
-        const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        isMobileDevice = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         
-        if (isMobile) {
+        if (isMobileDevice) {
             document.getElementById('mobile').style.display = 'block';
         } else {
             document.getElementById('desktop').style.display = 'block';
@@ -942,7 +944,36 @@
     
     function showDownloadModal(type) {
         currentDownloadType = type;
-        document.getElementById('downloadModal').style.display = 'flex';
+        const modal = document.getElementById('downloadModal');
+        const title = document.getElementById('modalTitle');
+        const description = document.getElementById('modalDescription');
+        const instructions = document.getElementById('modalInstructions');
+        const phoneWarning = document.getElementById('phoneWarning');
+        
+        if (isMobileDevice) {
+            // Mobile instructions
+            title.textContent = '📱 Important Download Information';
+            description.textContent = 'You\'re about to download the MatchOptimizer application file.';
+            instructions.innerHTML = `
+                <li>Transfer the file to your computer</li>
+                <li>Extract the ZIP file</li>
+                <li>Run "MatchOptimizer.bat" as Administrator</li>
+                <li>Create your account in the application</li>
+            `;
+            phoneWarning.style.display = 'block';
+        } else {
+            // Desktop instructions
+            title.textContent = '💻 Ready to Download';
+            description.textContent = 'You\'re about to download the MatchOptimizer application.';
+            instructions.innerHTML = `
+                <li>Extract the ZIP file</li>
+                <li>Run "MatchOptimizer.bat" as Administrator</li>
+                <li>Create your account in the application</li>
+            `;
+            phoneWarning.style.display = 'none';
+        }
+        
+        modal.style.display = 'flex';
     }
     
     function closeModal() {
@@ -986,7 +1017,7 @@
                 button.disabled = false;
                 
                 // Show success message
-                alert('✅ Download complete! Please transfer the file to your computer and follow the installation instructions.');
+                alert('✅ Download complete! ' + (isMobileDevice ? 'Please transfer the file to your computer and follow the installation instructions.' : 'Follow the installation instructions to get started.'));
             }, 2000);
         }, 1000);
     }
