@@ -45,10 +45,12 @@
             color: white;
             font-weight: 600;
             cursor: pointer;
+            transition: all 0.3s ease;
         }
         
         .header-btn:hover {
             background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
         }
         
         h1 { 
@@ -88,6 +90,13 @@
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.4s ease;
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+            background: linear-gradient(135deg, rgba(255, 214, 255, 0.2), rgba(255, 158, 204, 0.15));
+            box-shadow: 0 10px 25px rgba(255, 107, 157, 0.2);
         }
         
         .feature-icon {
@@ -119,6 +128,12 @@
             margin: 12px;
             font-weight: 600;
             letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
         }
         
         .download-btn {
@@ -212,6 +227,11 @@
             margin: 20px 0;
             text-align: left;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .instructions:hover {
+            background: rgba(255, 255, 255, 0.15);
         }
         
         .instructions ol {
@@ -231,6 +251,11 @@
             padding: 20px;
             margin: 30px 0;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .live-activity:hover {
+            background: rgba(255, 255, 255, 0.15);
         }
         
         .activity-title {
@@ -268,6 +293,11 @@
             border-radius: 15px;
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-slider:hover {
+            background: rgba(255, 255, 255, 0.15);
         }
         
         .testimonial-slide {
@@ -289,6 +319,12 @@
             object-fit: cover;
             margin-right: 20px;
             border: 3px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-avatar:hover {
+            transform: scale(1.05);
+            border-color: rgba(255, 255, 255, 0.5);
         }
         
         .testimonial-content {
@@ -301,6 +337,11 @@
             padding: 25px;
             margin: 30px 0;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .privacy-section:hover {
+            background: rgba(255, 255, 255, 0.15);
         }
         
         .privacy-features {
@@ -313,6 +354,11 @@
         .privacy-feature {
             text-align: center;
             padding: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .privacy-feature:hover {
+            transform: translateY(-3px);
         }
         
         .testimonials {
@@ -328,6 +374,12 @@
             border-radius: 18px;
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial:hover {
+            transform: translateY(-5px);
+            background: linear-gradient(135deg, rgba(255, 214, 255, 0.18), rgba(255, 158, 204, 0.12));
         }
         
         .platform-section { 
@@ -337,6 +389,72 @@
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
             border-radius: 22px;
             border: 1px solid rgba(255, 255, 255, 0.18);
+            transition: all 0.3s ease;
+        }
+        
+        .platform-section:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+        }
+        
+        /* Download Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .modal-title {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #ffd6ff;
+        }
+        
+        .modal-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 25px;
+        }
+        
+        .modal-btn {
+            padding: 12px 25px;
+            border-radius: 50px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-confirm {
+            background: linear-gradient(45deg, #ff6b9d, #ff6b6b);
+            color: white;
+        }
+        
+        .modal-cancel {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        
+        .modal-btn:hover {
+            transform: translateY(-2px);
         }
         
         /* Mobile responsiveness */
@@ -392,6 +510,10 @@
             .header-buttons {
                 justify-content: center;
             }
+            
+            .modal-buttons {
+                flex-direction: column;
+            }
         }
         
         @media (max-width: 480px) {
@@ -414,10 +536,30 @@
     </style>
 </head>
 <body>
+    <!-- Download Confirmation Modal -->
+    <div class="modal" id="downloadModal">
+        <div class="modal-content">
+            <h3 class="modal-title">📱 Important Download Information</h3>
+            <p>You're about to download the MatchOptimizer application file.</p>
+            <p><strong>Please note:</strong> This is a computer application (.exe file). You'll need to:</p>
+            <ol style="text-align: left; margin: 15px 0; padding-left: 20px;">
+                <li>Transfer the file to your computer</li>
+                <li>Extract the ZIP file</li>
+                <li>Run "MatchOptimizer.exe" as Administrator</li>
+                <li>Create your account in the application</li>
+            </ol>
+            <p>You cannot sign up or use the app directly on your phone.</p>
+            <div class="modal-buttons">
+                <button class="modal-btn modal-confirm" onclick="confirmDownload()">Continue Download</button>
+                <button class="modal-btn modal-cancel" onclick="closeModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <div class="header-buttons">
-            <button class="header-btn" onclick="downloadApp(this)">Sign In</button>
-            <button class="header-btn" onclick="downloadApp(this)">Sign Up</button>
+            <button class="header-btn" onclick="showDownloadModal('signin')">Sign In</button>
+            <button class="header-btn" onclick="showDownloadModal('signup')">Sign Up</button>
         </div>
         
         <h1>💖 LovesWithoutBorders - MatchOptimizer</h1>
@@ -507,7 +649,7 @@
             
             <div class="button-group">
                 <div>
-                    <button onclick="downloadApp(this)" class="computer-btn">
+                    <button onclick="showDownloadModal('computer')" class="computer-btn">
                         💻 DOWNLOAD MATCHOPTIMIZER FOR COMPUTER
                     </button>
                     <p><small>Get the app now and transfer to your computer</small></p>
@@ -530,7 +672,7 @@
             <h2 class="section-title">💻 Perfect! You're on a Computer</h2>
             <p class="section-description">Get started immediately with our full-featured desktop application. Experience crystal-clear video calls, advanced translation, and seamless international matching!</p>
             
-            <button class="download-btn" onclick="downloadApp(this)">
+            <button class="download-btn" onclick="showDownloadModal('desktop')">
                 ⬇️ DOWNLOAD MATCHOPTIMIZER APP NOW (FREE)
             </button>
             <p><small>Windows Application • 100% Free • Global Access • Instant Setup</small></p>
@@ -593,6 +735,8 @@
     </div>
 
     <script>
+    let currentDownloadType = '';
+    
     function detectPlatform() {
         const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         
@@ -603,13 +747,35 @@
         }
     }
     
-    function downloadApp(button) {
-        const btn = button;
-        const originalText = btn.innerHTML;
+    function showDownloadModal(type) {
+        currentDownloadType = type;
+        document.getElementById('downloadModal').style.display = 'flex';
+    }
+    
+    function closeModal() {
+        document.getElementById('downloadModal').style.display = 'none';
+    }
+    
+    function confirmDownload() {
+        closeModal();
+        
+        // Show loading state on the appropriate button
+        let button;
+        if (currentDownloadType === 'desktop') {
+            button = document.querySelector('.download-btn');
+        } else if (currentDownloadType === 'computer') {
+            button = document.querySelector('.computer-btn');
+        } else {
+            // For sign in/sign up buttons
+            const buttons = document.querySelectorAll('.header-btn');
+            button = buttons[currentDownloadType === 'signin' ? 0 : 1];
+        }
+        
+        const originalText = button.innerHTML;
         
         // Show loading state
-        btn.innerHTML = '<span class="spinner"></span>DOWNLOADING...';
-        btn.disabled = true;
+        button.innerHTML = '<span class="spinner"></span>DOWNLOADING...';
+        button.disabled = true;
         
         // Create a safe download link
         setTimeout(() => {
@@ -623,8 +789,11 @@
             
             // Reset button
             setTimeout(() => {
-                btn.innerHTML = originalText;
-                btn.disabled = false;
+                button.innerHTML = originalText;
+                button.disabled = false;
+                
+                // Show success message
+                alert('✅ Download complete! Please transfer the file to your computer and follow the installation instructions.');
             }, 2000);
         }, 1000);
     }
@@ -655,6 +824,13 @@
         
         stats.forEach((stat, index) => {
             stat.textContent = targetValues[index];
+        });
+        
+        // Close modal when clicking outside
+        document.getElementById('downloadModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
         });
     });
     </script>
