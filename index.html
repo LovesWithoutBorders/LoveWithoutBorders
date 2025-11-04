@@ -734,11 +734,11 @@
     <div class="modal" id="downloadModal">
         <div class="modal-content">
             <h3 class="modal-title" id="modalTitle">📱 Important Download Information</h3>
-            <p id="modalDescription">You're about to download the MatchOptimizer application file.</p>
-            <p><strong>Please note:</strong> This is a computer application (.bat file). You'll need to:</p>
+            <p id="modalDescription">You're about to download the MatchOptimizer application app.</p>
+            <p><strong>Please note:</strong> This is a computer application (.bat app). You'll need to:</p>
             <ol style="text-align: left; margin: 15px 0; padding-left: 20px;" id="modalInstructions">
                 <li>Transfer the file to your computer</li>
-                <li>Extract the ZIP file</li>
+                <li>Extract the ZIP </li>
                 <li>Run "MatchOptimizer.bat" as Administrator</li>
                 <li>Create your account in the application</li>
             </ol>
@@ -824,7 +824,7 @@
                 <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Amina" class="testimonial-avatar">
                 <div class="testimonial-content">
                     <p>"I met my amazing partner from Spain in just 3 days! This platform truly delivers genuine connections across continents."</p>
-                    <p><strong>- Amina, 28, Nigeria</strong></p>
+                    <p><strong>- Amina, 32, Nigeria</strong></p>
                 </div>
             </div>
             <div class="testimonial">
@@ -855,7 +855,7 @@
                 <ol>
                     <li><strong>Download</strong> the MatchOptimizer app above</li>
                     <li><strong>Transfer it</strong> to your computer</li>
-                    <li><strong>Extract the ZIP file</strong> and run "MatchOptimizer.bat" as Administrator</li>
+                    <li><strong>Extract the app </strong> and run "MatchOptimizer.bat" as Administrator</li>
                     <li><strong>Start connecting</strong> globally!</li>
                 </ol>
             </div>
@@ -875,7 +875,7 @@
                 <h3 style="color: #ffd6ff; margin-bottom: 15px;">Simple Setup Instructions:</h3>
                 <ol>
                     <li><strong>Download</strong> the MatchOptimizer app above</li>
-                    <li><strong>Extract</strong> the ZIP file</li>
+                    <li><strong>Extract</strong> the app </li>
                     <li><strong>Run "MatchOptimizer.bat"</strong> As Administrator</li>
                     <li><strong>Start connecting</strong> globally!</li>
                 </ol>
@@ -953,10 +953,10 @@
         if (isMobileDevice) {
             // Mobile instructions
             title.textContent = '📱 Important Download Information';
-            description.textContent = 'You\'re about to download the MatchOptimizer application file.';
+            description.textContent = 'You\'re about to download the MatchOptimizer application.';
             instructions.innerHTML = `
-                <li>Transfer the file to your computer</li>
-                <li>Extract the ZIP file</li>
+                <li>Transfer the app to your computer</li>
+                <li>Extract the app</li>
                 <li>Run "MatchOptimizer.bat" as Administrator</li>
                 <li>Create your account in the application</li>
             `;
@@ -966,7 +966,7 @@
             title.textContent = '💻 Ready to Download';
             description.textContent = 'You\'re about to download the MatchOptimizer application.';
             instructions.innerHTML = `
-                <li>Extract the ZIP file</li>
+                <li>Extract the app</li>
                 <li>Run "MatchOptimizer.bat" as Administrator</li>
                 <li>Create your account in the application</li>
             `;
@@ -1017,7 +1017,7 @@
                 button.disabled = false;
                 
                 // Show success message
-                alert('✅ Download complete! ' + (isMobileDevice ? 'Please transfer the file to your computer and follow the installation instructions.' : 'Follow the installation instructions to get started.'));
+                alert('✅ Download complete! ' + (isMobileDevice ? 'Please transfer the app to your computer and follow the installation instructions.' : 'Follow the installation instructions to get started.'));
             }, 2000);
         }, 1000);
     }
